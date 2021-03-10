@@ -25,7 +25,7 @@ class PlanSeeder extends Seeder
             },
             'skill_group_id' => function () use ($skillGroups) {
                 return $skillGroups->random()->id;
-            }
+            },
         ]);
 
         Plan::query()->insert($plans);

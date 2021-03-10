@@ -2,12 +2,12 @@
 
 namespace Asseco\PlanRouter\App\Services;
 
-use Asseco\PlanRouter\App\Models\Message;
-use Asseco\PlanRouter\App\Models\Plan;
 use Asseco\Inbox\Contracts\Message as MessageContract;
 use Asseco\Inbox\Facades\InboxGroup;
 use Asseco\Inbox\InboundEmail;
 use Asseco\Inbox\Inbox;
+use Asseco\PlanRouter\App\Models\Message;
+use Asseco\PlanRouter\App\Models\Plan;
 use Closure;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
@@ -75,7 +75,7 @@ class InboxService
     protected function inboxFallback(): void
     {
         InboxGroup::fallback(function (InboundEmail $email) {
-            Log::info("Plan match not found. Triggering fallback...");
+            Log::info('Plan match not found. Triggering fallback...');
             Message::fromInbound($email);
         });
     }
