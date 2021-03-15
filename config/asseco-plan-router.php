@@ -15,6 +15,6 @@ return [
     },
 
     'inbox_fallback' => function () {
-        Log::info("Plan match not found. Triggering fallback...");
+        Log::info('Plan match not found. Triggering fallback...');
     },
 ];
