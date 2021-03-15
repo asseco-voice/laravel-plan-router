@@ -4,7 +4,7 @@ namespace Asseco\PlanRouter\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class SkillGroupPackageSeeder extends Seeder
+class PlanRouterPackageSeeder extends Seeder
 {
     /**
      * Run the database seeds.

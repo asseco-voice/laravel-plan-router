@@ -15,10 +15,7 @@ class PlanRouterServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/asseco-plan-router.php', 'asseco-plan-router');
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
-
-        if (config('asseco-containers.runs_migrations')) {
-            $this->loadMigrationsFrom(__DIR__ . '/../migrations');
-        }
+        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
     }
 
     /**
