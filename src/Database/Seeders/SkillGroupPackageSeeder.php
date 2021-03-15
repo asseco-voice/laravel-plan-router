@@ -21,6 +21,5 @@ class SkillGroupPackageSeeder extends Seeder
             PlanMatchSeeder::class,
             PlanTemplateModelSeeder::class,
         ]);
-
     }
 }
