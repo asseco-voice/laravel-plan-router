@@ -5,7 +5,6 @@ namespace Asseco\PlanRouter\App\Services;
 use Asseco\Inbox\Contracts\Message as MessageContract;
 use Asseco\Inbox\Facades\InboxGroup;
 use Asseco\Inbox\Inbox;
-use Asseco\PlanRouter\App\Models\Message;
 use Asseco\PlanRouter\App\Models\Plan;
 use Illuminate\Support\Collection;
 
