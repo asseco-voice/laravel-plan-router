@@ -2,15 +2,12 @@
 
 namespace Asseco\PlanRouter\App\Services;
 
-use Asseco\PlanRouter\App\Models\Message;
-use Asseco\PlanRouter\App\Models\Plan;
 use Asseco\Inbox\Contracts\Message as MessageContract;
 use Asseco\Inbox\Facades\InboxGroup;
-use Asseco\Inbox\InboundEmail;
 use Asseco\Inbox\Inbox;
-use Closure;
+use Asseco\PlanRouter\App\Models\Message;
+use Asseco\PlanRouter\App\Models\Plan;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 
 class InboxService
 {
@@ -25,7 +22,7 @@ class InboxService
 
     protected function registerInboxes(): void
     {
-        $plans = Plan::getCached()->load(['matches', 'skillGroup']);
+        $plans = Plan::getWithRelations();
 
         foreach ($plans as $plan) {
             $inbox = $this->createInbox($plan);
@@ -39,8 +36,10 @@ class InboxService
 
         $this->registerInboxPatterns($plan->matches, $inbox);
 
+        $callback = config('asseco-plan-router.inbox_callback');
+
         $inbox
-            ->action($this->inboxCallback($plan->skillGroup->id))
+            ->action($callback($plan->skillGroup->id))
             ->matchEither($plan->match_either)
             ->priority($plan->priority);
 
@@ -64,19 +63,10 @@ class InboxService
         }
     }
 
-    protected function inboxCallback(int $skillGroupId): Closure
-    {
-        return function (InboundEmail $email) use ($skillGroupId) {
-            Log::info("Plan match found for skill group ID: $skillGroupId.");
-            Message::fromInbound($email, [$skillGroupId]);
-        };
-    }
-
     protected function inboxFallback(): void
     {
-        InboxGroup::fallback(function (InboundEmail $email) {
-            Log::info("Plan match not found. Triggering fallback...");
-            Message::fromInbound($email);
-        });
+        $callback = config('asseco-plan-router.inbox_fallback');
+
+        InboxGroup::fallback($callback());
     }
 }

@@ -15,6 +15,10 @@ class PlanRouterServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/asseco-remote-relations.php', 'asseco-remote-relations');
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+
+        if (config('asseco-containers.runs_migrations')) {
+            $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        }
     }
 
     /**
@@ -26,10 +30,10 @@ class PlanRouterServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . config('asseco-remote-relations.stub_path') => database_path("migrations/{$timestamp}_create_remote_relations_table.php"),
-        ], 'asseco-remote-relations-migrations');
+        ], 'asseco-remote-relations');
 
         $this->publishes([
             __DIR__ . '/../config/asseco-remote-relations.php' => config_path('asseco-remote-relations.php'),
-        ], 'asseco-remote-relations-config');
+        ], 'asseco-remote-relations');
     }
 }
