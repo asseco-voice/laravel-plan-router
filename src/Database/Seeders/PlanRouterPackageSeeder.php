@@ -14,6 +14,7 @@ class PlanRouterPackageSeeder extends Seeder
     public function run()
     {
         $this->call([
+            SkillGroupSeeder::class,
             MatchSeeder::class,
             PlanTemplateSeeder::class,
             PlanSeeder::class,

@@ -16,8 +16,8 @@ class PlanSeeder extends Seeder
      */
     public function run()
     {
-        $planTemplates = PlanTemplate::all('id');
-        $skillGroups = SkillGroup::all('id');
+        $planTemplates = PlanTemplate::all();
+        $skillGroups = SkillGroup::all();
 
         $plans = Plan::factory()->count(50)->raw([
             'template_id'    => function () use ($planTemplates) {
