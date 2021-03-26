@@ -26,19 +26,22 @@ class PlanRouterServiceProvider extends ServiceProvider
             __DIR__ . '/../config/asseco-plan-router.php' => config_path('asseco-plan-router.php'),
         ], 'asseco-plan-router');
 
-        $timestamp = now()->format('Y_m_d_His');
-
         $migrations = [];
-        foreach (glob(__DIR__ . '/../stubs/Repository/*.stub') as $stub) {
+        $stubPath = __DIR__ . '/../stubs/';
 
-            $stub = preg_replace('/\d\d_/', '', $stub);
+        foreach (glob($stubPath . '*.stub') as $stub) {
 
-            $migrations[] = [
-                __DIR__ . '/../database/migrations' => database_path("migrations/{$timestamp}_{$stub}")
-            ];
+            $migration = preg_replace('/\d\d_/', '', $stub);
+            $migration = str_replace([$stubPath, '.stub'], '', $migration);
+
+            $timestamp = now()->format('Y_m_d_Hisu');
+
+            $migrations = array_merge($migrations, [
+                $stub => database_path("migrations/{$timestamp}_{$migration}")
+            ]);
         }
 
-        $this->publishes($migrations, 'asseco-containers');
+        $this->publishes($migrations, 'asseco-plan-router');
 
     }
 }
