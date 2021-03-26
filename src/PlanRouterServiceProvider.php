@@ -30,15 +30,13 @@ class PlanRouterServiceProvider extends ServiceProvider
 
         $migrations = [];
         foreach (glob(__DIR__ . '/../stubs/Repository/*.stub') as $stub) {
-
             $stub = preg_replace('/\d\d_/', '', $stub);
 
             $migrations[] = [
-                __DIR__ . '/../database/migrations' => database_path("migrations/{$timestamp}_{$stub}")
+                __DIR__ . '/../database/migrations' => database_path("migrations/{$timestamp}_{$stub}"),
             ];
         }
 
         $this->publishes($migrations, 'asseco-containers');
-
     }
 }
