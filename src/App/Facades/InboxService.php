@@ -6,7 +6,7 @@ use Asseco\Inbox\Contracts\Message;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static void receiveEmail(Message $message)
+ * @method static void receive(Message $message)
  *
  * @see \Asseco\PlanRouter\App\Services\InboxService
  */

@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
 
 class InboxService
 {
-    public function receiveEmail(MessageContract $message): void
+    public function receive(MessageContract $message): void
     {
         $this->registerInboxes();
 
