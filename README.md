@@ -3,8 +3,8 @@
 # Laravel plan router
 
 This package is an extension of [inbox package](https://github.com/asseco-voice/laravel-inbox). 
-It's main purpose is to define a model for routing incoming communication by matching certain 
-regex patterns and executing self defined callbacks.  
+Its main purpose is to define a model for routing incoming communication by matching certain 
+regex patterns and executing callbacks when pattern is matched.  
 
 *Use case:* you have an endpoint for receiving emails which you need to parse based on some parameter,
 having one callback executed if incoming email comes from ``.*@gmail.com`` domain, other from `.*@yahoo.com`,
@@ -22,15 +22,17 @@ Install the package through composer. It is automatically registered as a Larave
 
 Attribute to match regex against. 
 
-Example: for email, this can be: from, to, cc, bcc, subject.
+**Example**: 
+- For email, this can be: *from, to, cc, bcc, subject*
+- For SMS, this can be: *from, to, body*
 
 ### Plan
 
 A user-friendly name for set of regex matches which must be matched in order for the plan to be hit.
-``Plan`` is thus a many-to-many relation with `Match` where in pivot table you can define the actual
-regex.
+``Plan`` is thus a many-to-many relation with `Match` for which you can define the actual
+regex in a pivot table.
 
-`priority` decides which callback will be hit if two plans are a hit at the same time. Higher priority
+`priority` if two plans for two different skill groups are a hit at the same time, higher priority plan
 has greater precedence, and if hit, all other callbacks which might be a match won't be hit.
 
 ``match_either`` - functions as an OR/AND gate. If set to `true`, having more than one match defined,
