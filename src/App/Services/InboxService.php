@@ -47,7 +47,7 @@ class InboxService
         $this->registerInboxPatterns($plan->matches, $inbox);
 
         $inbox
-            ->action(fn() => $this->canPlan->callback($this->message, $plan->skillGroup->id))
+            ->action(fn () => $this->canPlan->callback($this->message, $plan->skillGroup->id))
             ->matchEither($plan->match_either)
             ->priority($plan->priority);
 
@@ -73,6 +73,6 @@ class InboxService
 
     protected function registerFallback(): void
     {
-        InboxGroup::fallback(fn() => $this->canPlan->fallback($this->message));
+        InboxGroup::fallback(fn () => $this->canPlan->fallback($this->message));
     }
 }
