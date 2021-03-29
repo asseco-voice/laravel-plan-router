@@ -14,7 +14,6 @@ class PlanRouterServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/asseco-plan-router.php', 'asseco-plan-router');
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
     }
 
@@ -24,10 +23,6 @@ class PlanRouterServiceProvider extends ServiceProvider
     public function boot(): void
     {
         app()->singleton('inbox-service', InboxService::class);
-
-        $this->publishes([
-            __DIR__ . '/../config/asseco-plan-router.php' => config_path('asseco-plan-router.php'),
-        ], 'asseco-plan-router');
 
         $migrations = [];
         $stubPath = __DIR__ . '/../stubs/';

@@ -12,12 +12,12 @@ interface CanPlan
      * @param Message $message
      * @param int $skillGroupId
      */
-    public static function callback(Message $message, int $skillGroupId): void;
+    public static function planCallback(Message $message, int $skillGroupId): void;
 
     /**
      * Callback to be executed when no plan matched
      *
      * @param Message $message
      */
-    public static function fallback(Message $message): void;
+    public static function planFallback(Message $message): void;
 }
