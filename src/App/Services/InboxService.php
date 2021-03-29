@@ -2,19 +2,30 @@
 
 namespace Asseco\PlanRouter\App\Services;
 
-use Asseco\Inbox\Contracts\Message as MessageContract;
+use Asseco\Inbox\Contracts\Message;
 use Asseco\Inbox\Facades\InboxGroup;
 use Asseco\Inbox\Inbox;
+use Asseco\PlanRouter\App\Contracts\CanPlan;
 use Asseco\PlanRouter\App\Models\Plan;
 use Illuminate\Support\Collection;
 
 class InboxService
 {
-    public function receive(MessageContract $message): void
+    protected CanPlan $canPlan;
+    protected Message $message;
+
+    public function __construct(CanPlan $canPlan)
     {
+        $this->canPlan = $canPlan;
+    }
+
+    public function receive(Message $message): void
+    {
+        $this->message = $message;
+
         $this->registerInboxes();
 
-        $this->inboxFallback();
+        $this->registerFallback();
 
         InboxGroup::run($message);
     }
@@ -35,10 +46,8 @@ class InboxService
 
         $this->registerInboxPatterns($plan->matches, $inbox);
 
-        $callback = config('asseco-plan-router.inbox_callback');
-
         $inbox
-            ->action($callback($plan->skillGroup->id))
+            ->action(fn() => $this->canPlan->callback($this->message, $plan->skillGroup->id))
             ->matchEither($plan->match_either)
             ->priority($plan->priority);
 
@@ -55,17 +64,15 @@ class InboxService
             $method = $matchBy->name;
             $pattern = $matchBy->pivot->regex;
 
-            // Method is one of: [from, to, cc, bcc, subject]
+            // Method is one of [from, to, cc, bcc, subject] in a default configuration
             $inbox->{$method}("{pattern_$timestamp}");
             $inbox->where("pattern_$timestamp", trim($pattern, '/'));
             $timestamp++;
         }
     }
 
-    protected function inboxFallback(): void
+    protected function registerFallback(): void
     {
-        $callback = config('asseco-plan-router.inbox_fallback');
-
-        InboxGroup::fallback($callback());
+        InboxGroup::fallback(fn() => $this->canPlan->fallback($this->message));
     }
 }

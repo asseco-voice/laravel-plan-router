@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Asseco\PlanRouter;
 
+use Asseco\PlanRouter\App\Services\InboxService;
 use Illuminate\Support\ServiceProvider;
 
 class PlanRouterServiceProvider extends ServiceProvider
@@ -22,6 +23,8 @@ class PlanRouterServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        app()->singleton('inbox-service', InboxService::class);
+
         $this->publishes([
             __DIR__ . '/../config/asseco-plan-router.php' => config_path('asseco-plan-router.php'),
         ], 'asseco-plan-router');

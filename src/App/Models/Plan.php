@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 class Plan extends Model
 {
@@ -42,8 +43,8 @@ class Plan extends Model
         return $this->hasMany(PlanModelValue::class);
     }
 
-    public static function getWithRelations(): self
+    public static function getWithRelations(): Collection
     {
-        return self::load(['matches', 'skillGroup']);
+        return self::with(['matches', 'skillGroup'])->get();
     }
 }
