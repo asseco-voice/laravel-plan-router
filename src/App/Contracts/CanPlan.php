@@ -15,7 +15,7 @@ interface CanPlan
     public static function callback(Message $message, int $skillGroupId): void;
 
     /**
-     * Callback to be executed when no plan matched
+     * Callback to be executed when no plan matched.
      *
      * @param Message $message
      */
