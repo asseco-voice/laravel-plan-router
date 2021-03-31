@@ -16,8 +16,8 @@ class CreatePlansTable extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
-            $table->integer('priority')->default(0);
+            $table->string('description')->nullable();
+            $table->integer('priority')->default(false);
             $table->boolean('match_either')->default(false);
             $table->foreignId('template_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('skill_group_id')->constrained()->cascadeOnDelete();

@@ -11,15 +11,12 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     public function setUp(): void
     {
         parent::setUp();
+
+        $this->runLaravelMigrations();
     }
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [PlanRouterServiceProvider::class];
-    }
-
-    protected function getEnvironmentSetUp($app)
-    {
-        // perform environment setup
     }
 }

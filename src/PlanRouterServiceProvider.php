@@ -14,7 +14,12 @@ class PlanRouterServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->mergeConfigFrom(__DIR__ . '/../config/asseco-plan-router.php', 'asseco-plan-router');
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+
+        if (config('asseco-plan-router.runs_migrations')) {
+            $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        }
     }
 
     /**
@@ -24,20 +29,12 @@ class PlanRouterServiceProvider extends ServiceProvider
     {
         app()->singleton('inbox-service', InboxService::class);
 
-        $migrations = [];
-        $stubPath = __DIR__ . '/../stubs/';
+        $this->publishes([
+            __DIR__ . '/../database/migrations/' => database_path('migrations')
+        ], 'asseco-plan-router');
 
-        foreach (glob($stubPath . '*.stub') as $stub) {
-            $migration = preg_replace('/\d\d_/', '', $stub);
-            $migration = str_replace([$stubPath, '.stub'], '', $migration);
-
-            $timestamp = now()->format('Y_m_d_Hisu');
-
-            $migrations = array_merge($migrations, [
-                $stub => database_path("migrations/{$timestamp}_{$migration}"),
-            ]);
-        }
-
-        $this->publishes($migrations, 'asseco-plan-router');
+        $this->publishes([
+            __DIR__ . '/../config/asseco-plan-router.php' => config_path('asseco-plan-router.php'),
+        ], 'asseco-plan-router');
     }
 }

@@ -20,7 +20,7 @@ Install the package through composer. It is automatically registered as a Larave
 
 ### Match
 
-Attribute to match regex against. 
+Attribute to match regex against.
 
 **Example**: 
 - For email, this can be: *from, to, cc, bcc, subject*

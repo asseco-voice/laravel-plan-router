@@ -16,7 +16,7 @@ class CreateSkillGroupsTable extends Migration
         Schema::create('skill_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('email');
             $table->string('sender_name')->nullable();
             $table->string('reply_to')->nullable();
