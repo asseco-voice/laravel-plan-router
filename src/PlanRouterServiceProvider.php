@@ -30,7 +30,7 @@ class PlanRouterServiceProvider extends ServiceProvider
         app()->singleton('inbox-service', InboxService::class);
 
         $this->publishes([
-            __DIR__ . '/../database/migrations/' => database_path('migrations')
+            __DIR__ . '/../database/migrations/' => database_path('migrations'),
         ], 'asseco-plan-router');
 
         $this->publishes([

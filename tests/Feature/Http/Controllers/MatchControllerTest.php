@@ -31,5 +31,4 @@ class MatchControllerTest extends TestCase
             'updated_at',
         ];
     }
-
 }
