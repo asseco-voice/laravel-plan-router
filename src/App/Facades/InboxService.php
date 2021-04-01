@@ -2,11 +2,11 @@
 
 namespace Asseco\PlanRouter\App\Facades;
 
-use Asseco\Inbox\Contracts\Message;
+use Asseco\PlanRouter\App\Contracts\CanPlan;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static void receive(Message $message)
+ * @method static void receive(CanPlan $canPlan)
  *
  * @see \Asseco\PlanRouter\App\Services\InboxService
  */

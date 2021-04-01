@@ -51,38 +51,42 @@ If you don't have a valid use case for many skill groups, you can use a single d
 
 ## Setup
 
-Steps for package setup:
+In order to use the package, there are several steps to be followed:
 
-1. Define a controller method which is responsible for inbound communication (i.e. receive email)
-and call ``receive()`` method from `InboxService` facade.
+1. Run migrations with ``artisan migrate``
+1. If you have a need to modify migrations, you can publish them with
+``artisan vendor:publish --tag=asseco-plan-router`` and modify `skill_groups`
+table if necessary, other are best left intact. Be sure to set the ``runs_migrations``
+in the published config file to ``false`` in that case.
+1. Run (or include in your `DatabaseSeeder`) ``PlanRouterPackageSeeder`` to seed dummy data. 
+For production, only `MatchSeeder` will be ran as it is the only one mandatory for package to function.
+1. Call `InboxService::receive()` in a place in your code where you're planning to receive the messages.
+Function takes a single parameter which is a class implementing a ``CanPlan`` interface, so be sure
+to dedicate a class which will parse your **raw** input and which you can then forward to the method.
     
-    If you are using package for email, you can use already prepared request and method:
+    Interface consists of several methods:
     
-    ```php
-    public function receive(EmailRequest $request)
-    {
-        InboxService::receive($request->email());
-    }
-    ```
-   
-1. If you are using any other (non-email) form of communication, be sure to feed the `receive()` method 
-with a class implementing ``Message`` interface. It is a simple interface which needs to define two methods:
-
-    - ``isValid()`` to check whether incoming message is valid
-    - ``getMatchedValues($matchBy)`` which based on the attributes you defined in `Match` table should parse
-    the message accordingly. I.e. if ``Match`` has `recipient` field to match by, when someone hits 
-    `getMatchedValues('recipient')`, your method needs to know how to return it from an inbound message. 
-
-1. Have the model which represents communication messages in your system (i.e. ``Message``, `Mail`...)
-implement a ``CanPlan`` interface. 
-1. Define methods from that interface. Callback will execute if a plan is hit, and fallback will execute 
-if no plan was hit.
-1. Bind the model to the interface in your ``AppServiceProvider@boot()``
-
-    ```php
-    $this->app->bind(CanPlan::class, Message::class);
-    ```
-
-1. Publish migrations with ``artisan vendor:publish --tag=asseco-plan-router`` and modify `skill_groups`
-table if necessary, other are best left intact. 
-1. Run ``artisan migrate`` and run `PlanRouterPackageSeeder` seeder if you want to see some dummy data as well.
+    - ``isValid()`` - checks if a message is valid.
+    
+    - ``getMatchedValues($matchBy)`` which based on the attributes you defined in `matches` table should parse
+    the message so that it knows where to fetch the certain attribute from.
+        
+        Example, having *from* and *to* in `matches` table:
+            
+        ```php
+        public function getMatchedValues(string $matchBy): array
+        {
+            switch ($matchBy) {
+                case 'from':
+                    return $this->parseFrom();
+                case 'to':
+                    return $this->parseTo();
+                default:
+                    return [];
+            }
+        }
+        ```
+    
+    - `planCallback()` which is a method you should implement which will execute when a plan is matched.
+    
+    - `planFallback()` which is a method you should implement which will execute when no plan is matched.

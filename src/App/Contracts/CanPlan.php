@@ -2,22 +2,22 @@
 
 namespace Asseco\PlanRouter\App\Contracts;
 
-use Asseco\Inbox\Contracts\Message;
+use Asseco\Inbox\Contracts\CanMatch;
 
-interface CanPlan
+interface CanPlan extends CanMatch
 {
     /**
      * Callback to be executed when plan is matched.
      *
-     * @param Message $message
+     * @param CanMatch $message
      * @param int $skillGroupId
      */
-    public static function planCallback(Message $message, int $skillGroupId): void;
+    public static function planCallback(CanMatch $message, int $skillGroupId): void;
 
     /**
      * Callback to be executed when no plan matched.
      *
-     * @param Message $message
+     * @param CanMatch $message
      */
-    public static function planFallback(Message $message): void;
+    public static function planFallback(CanMatch $message): void;
 }
