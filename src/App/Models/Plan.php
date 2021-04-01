@@ -30,7 +30,7 @@ class Plan extends Model
 
     public function planTemplate(): BelongsTo
     {
-        return $this->belongsTo(PlanTemplate::class);
+        return $this->belongsTo(PlanTemplate::class, 'template_id');
     }
 
     public function skillGroup(): BelongsTo
