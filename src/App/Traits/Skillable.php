@@ -9,6 +9,7 @@ trait Skillable
 {
     public function skillGroups(): MorphToMany
     {
-        return $this->morphToMany(SkillGroup::class, 'skillable');
+        return $this->morphToMany(SkillGroup::class, 'skillable')
+            ->withTimestamps();
     }
 }
