@@ -27,6 +27,5 @@ class PlanRouterPackageSeeder extends Seeder
                 PlanTemplateModelSeeder::class,
             ]);
         }
-
     }
 }
