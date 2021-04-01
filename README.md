@@ -60,6 +60,7 @@ table if necessary, other are best left intact. Be sure to set the ``runs_migrat
 in the published config file to ``false`` in that case.
 1. Run (or include in your `DatabaseSeeder`) ``PlanRouterPackageSeeder`` to seed dummy data. 
 For production, only `MatchSeeder` will be ran as it is the only one mandatory for package to function.
+It defines what can your **raw** payload match by.
 1. Call `InboxService::receive()` in a place in your code where you're planning to receive the messages.
 Function takes a single parameter which is a class implementing a ``CanPlan`` interface, so be sure
 to dedicate a class which will parse your **raw** input and which you can then forward to the method.
@@ -90,3 +91,6 @@ to dedicate a class which will parse your **raw** input and which you can then f
     - `planCallback()` which is a method you should implement which will execute when a plan is matched.
     
     - `planFallback()` which is a method you should implement which will execute when no plan is matched.
+
+1. If you are using ``SkillGroups`` from the package, you may add `Skillable` trait to your model to
+expose the relationship.

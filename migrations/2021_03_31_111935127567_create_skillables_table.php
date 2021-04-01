@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateModelSkillGroupTable extends Migration
+class CreateSkillablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateModelSkillGroupTable extends Migration
      */
     public function up()
     {
-        Schema::create('model_skill_group', function (Blueprint $table) {
+        Schema::create('skillables', function (Blueprint $table) {
             $table->id();
             $table->foreignId('skill_group_id')->constrained()->onDelete('cascade');
-            $table->morphs('model');
+            $table->morphs('skillable');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateModelSkillGroupTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('model_skill_group');
+        Schema::dropIfExists('skillables');
     }
 }
