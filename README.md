@@ -89,8 +89,11 @@ to dedicate a class which will parse your **raw** input and which you can then f
         ```
     
     - `planCallback()` which is a method you should implement which will execute when a plan is matched.
+    Input is the same class instance you forwarded to ``receive()`` method of a Facade, and matched
+    skill group ID.
     
     - `planFallback()` which is a method you should implement which will execute when no plan is matched.
+    Input is the same class instance you forwarded to ``receive()`` method of a Facade.
 
 1. If you are using ``SkillGroups`` from the package, you may add `Skillable` trait to your model to
 expose the relationship.

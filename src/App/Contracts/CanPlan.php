@@ -9,15 +9,15 @@ interface CanPlan extends CanMatch
     /**
      * Callback to be executed when plan is matched.
      *
-     * @param CanMatch $message
+     * @param CanPlan $message
      * @param int $skillGroupId
      */
-    public static function planCallback(CanMatch $message, int $skillGroupId): void;
+    public static function planCallback(CanPlan $message, int $skillGroupId): void;
 
     /**
      * Callback to be executed when no plan matched.
      *
-     * @param CanMatch $message
+     * @param CanPlan $message
      */
-    public static function planFallback(CanMatch $message): void;
+    public static function planFallback(CanPlan $message): void;
 }
