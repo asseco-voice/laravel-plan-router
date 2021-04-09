@@ -18,6 +18,8 @@ class CreateSkillablesTable extends Migration
             $table->foreignId('skill_group_id')->constrained()->onDelete('cascade');
             $table->morphs('skillable');
             $table->timestamps();
+
+            $table->unique(['skill_group_id', 'skillable_type', 'skillable_id']);
         });
     }
 
