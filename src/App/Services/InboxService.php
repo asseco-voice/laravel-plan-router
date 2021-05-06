@@ -6,12 +6,17 @@ use Asseco\Inbox\Facades\InboxGroup;
 use Asseco\Inbox\Inbox;
 use Asseco\PlanRouter\App\Contracts\CanPlan;
 use Asseco\PlanRouter\App\Models\Plan;
+use Exception;
 use Illuminate\Support\Collection;
 
 class InboxService
 {
     protected CanPlan $canPlan;
 
+    /**
+     * @param CanPlan $canPlan
+     * @throws Exception
+     */
     public function receive(CanPlan $canPlan): void
     {
         $this->canPlan = $canPlan;
@@ -23,6 +28,9 @@ class InboxService
         InboxGroup::run($canPlan);
     }
 
+    /**
+     * @throws Exception
+     */
     protected function registerInboxes(): void
     {
         $plans = Plan::getWithRelations();
@@ -33,6 +41,11 @@ class InboxService
         }
     }
 
+    /**
+     * @param Plan $plan
+     * @return Inbox
+     * @throws Exception
+     */
     protected function createInbox(Plan $plan): Inbox
     {
         $inbox = new Inbox();
@@ -50,7 +63,7 @@ class InboxService
     /**
      * @param Collection $matches
      * @param Inbox $inbox
-     * @throws \Exception
+     * @throws Exception
      */
     protected function registerInboxPatterns(Collection $matches, Inbox $inbox): void
     {
