@@ -18,7 +18,7 @@ class SkillGroup extends Model
         'sender_name',
         'reply_to',
         'priority',
-        'send_needs_approval'
+        'send_needs_approval',
     ];
 
     protected static function newFactory()
