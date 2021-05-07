@@ -11,7 +11,15 @@ class SkillGroup extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'email', 'sender_name', 'reply_to', 'priority'];
+    protected $fillable = [
+        'name',
+        'description',
+        'email',
+        'sender_name',
+        'reply_to',
+        'priority',
+        'send_needs_approval',
+    ];
 
     protected static function newFactory()
     {
