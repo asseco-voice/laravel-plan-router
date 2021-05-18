@@ -2,30 +2,43 @@
 
 namespace Asseco\PlanRouter\App\Services;
 
+use Asseco\Inbox\Contracts\CanMatch;
 use Asseco\Inbox\Facades\InboxGroup;
 use Asseco\Inbox\Inbox;
-use Asseco\PlanRouter\App\Contracts\CanPlan;
 use Asseco\PlanRouter\App\Models\Plan;
 use Exception;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class InboxService
 {
-    protected CanPlan $canPlan;
+    protected CanMatch $canMatch;
 
     /**
-     * @param CanPlan $canPlan
+     * @param CanMatch $canMatch
+     * @return Plan|null
      * @throws Exception
      */
-    public function receive(CanPlan $canPlan): void
+    public function match(CanMatch $canMatch): ?Plan
     {
-        $this->canPlan = $canPlan;
+        $this->canMatch = $canMatch;
 
         $this->registerInboxes();
 
         $this->registerFallback();
 
-        InboxGroup::run($canPlan);
+        /** @var Inbox $matchedInbox */
+        // Interested in first match only as we're not utilizing
+        // continuous matching from Inbox package.
+        $matchedInbox = Arr::get(InboxGroup::run($canMatch), '0');
+
+        $planId = Arr::get($matchedInbox->getMeta(), 'plan_id');
+
+        /** @var Plan $plan */
+        $plan = Plan::query()->find($planId);
+
+        return $plan;
     }
 
     /**
@@ -53,7 +66,8 @@ class InboxService
         $this->registerInboxPatterns($plan->matches, $inbox);
 
         $inbox
-            ->action(fn () => $this->canPlan->planCallback($this->canPlan, $plan->skillGroup->id))
+            ->meta(['plan_id' => $plan->id])
+            ->action(fn() => Log::info("Matched plan ID {$plan->id}."))
             ->matchEither($plan->match_either)
             ->priority($plan->priority);
 
@@ -67,23 +81,16 @@ class InboxService
      */
     protected function registerInboxPatterns(Collection $matches, Inbox $inbox): void
     {
-        // Adding timestamp because no 2 same pattern
-        // names can be registered for a single mailbox
-        $timestamp = now()->timestamp;
-
         foreach ($matches as $matchBy) {
             $attribute = $matchBy->name;
             $pattern = $matchBy->pivot->regex;
 
-            $inbox->setPattern($attribute, "{pattern_$timestamp}");
-            $inbox->where("pattern_$timestamp", trim($pattern, '/'));
-
-            $timestamp++;
+            $inbox->setPattern($attribute, '{' . $pattern . '}');
         }
     }
 
     protected function registerFallback(): void
     {
-        InboxGroup::fallback(fn () => $this->canPlan->planFallback($this->canPlan));
+        InboxGroup::fallback(fn() => Log::info("Matched no plan."));
     }
 }

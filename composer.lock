@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e56b107eba4b82f5cfd638fb0715f04e",
+    "content-hash": "b6d2fd132a24f8d93a993fd377f6dbd9",
     "packages": [
         {
             "name": "asseco-voice/laravel-inbox",
-            "version": "v0.1.0",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/asseco-voice/laravel-inbox.git",
-                "reference": "4fa97884c374bcd72d02593d32c0aba64aa0ff1a"
+                "reference": "c03f3206771726248e6cbd6dc4105bb5f1c43c7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asseco-voice/laravel-inbox/zipball/4fa97884c374bcd72d02593d32c0aba64aa0ff1a",
-                "reference": "4fa97884c374bcd72d02593d32c0aba64aa0ff1a",
+                "url": "https://api.github.com/repos/asseco-voice/laravel-inbox/zipball/c03f3206771726248e6cbd6dc4105bb5f1c43c7b",
+                "reference": "c03f3206771726248e6cbd6dc4105bb5f1c43c7b",
                 "shasum": ""
             },
             "require": {
@@ -56,9 +56,9 @@
             ],
             "support": {
                 "issues": "https://github.com/asseco-voice/laravel-inbox/issues",
-                "source": "https://github.com/asseco-voice/laravel-inbox/tree/v0.1.0"
+                "source": "https://github.com/asseco-voice/laravel-inbox/tree/v1.0.0"
             },
-            "time": "2021-04-01T06:44:03+00:00"
+            "time": "2021-05-18T14:07:12+00:00"
         },
         {
             "name": "brick/math",
