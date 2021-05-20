@@ -61,39 +61,12 @@ in the published config file to ``false`` in that case.
 1. Run (or include in your `DatabaseSeeder`) ``PlanRouterPackageSeeder`` to seed dummy data. 
 For production, only `MatchSeeder` will be ran as it is the only one mandatory for package to function.
 It defines what can your **raw** payload match by.
-1. Call `InboxService::receive()` in a place in your code where you're planning to receive the messages.
-Function takes a single parameter which is a class implementing a ``CanPlan`` interface, so be sure
+1. Call `InboxService::match()` in a place in your code where you're planning to receive the messages.
+Function takes a single parameter which is a class implementing a ``CanMatch`` interface, so be sure
 to dedicate a class which will parse your **raw** input and which you can then forward to the method.
-    
-    Interface consists of several methods:
-    
-    - ``isValid()`` - checks if a message is valid.
-    
-    - ``getMatchedValues($matchBy)`` which based on the attributes you defined in `matches` table should parse
-    the message so that it knows where to fetch the certain attribute from.
-        
-        Example, having *from* and *to* in `matches` table:
-            
-        ```php
-        public function getMatchedValues(string $matchBy): array
-        {
-            switch ($matchBy) {
-                case 'from':
-                    return $this->parseFrom();
-                case 'to':
-                    return $this->parseTo();
-                default:
-                    return [];
-            }
-        }
-        ```
-    
-    - `planCallback()` which is a method you should implement which will execute when a plan is matched.
-    Input is the same class instance you forwarded to ``receive()`` method of a Facade, and matched
-    skill group ID.
-    
-    - `planFallback()` which is a method you should implement which will execute when no plan is matched.
-    Input is the same class instance you forwarded to ``receive()`` method of a Facade.
-
+Details about ``CanMatch`` implementation can be seen in 
+[original package documentation](https://github.com/asseco-voice/laravel-inbox).
+This will return a matched ``Plan`` in case of a successful match, or `null` in case of no 
+match.
 1. If you are using ``SkillGroups`` from the package, you may add `Skillable` trait to your model to
 expose the relationship.
