@@ -66,7 +66,7 @@ Function takes a single parameter which is a class implementing a ``CanMatch`` i
 to dedicate a class which will parse your **raw** input and which you can then forward to the method.
 Details about ``CanMatch`` implementation can be seen in 
 [original package documentation](https://github.com/asseco-voice/laravel-inbox).
-This will return an array of matched ``Plans`` in case of a successful match, or `null` in case of no 
+This will return a matched ``Plan`` in case of a successful match, or `null` in case of no 
 match.
 1. If you are using ``SkillGroups`` from the package, you may add `Skillable` trait to your model to
 expose the relationship.
