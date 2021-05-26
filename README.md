@@ -3,16 +3,17 @@
 # Laravel plan router
 
 This package is an extension of [inbox package](https://github.com/asseco-voice/laravel-inbox). 
-Its main purpose is to define a model for routing incoming communication by matching certain 
-regex patterns and executing callbacks when pattern is matched.  
+Its main purpose is to provide the ability to define multiple ``Plans`` with certain regex rules,
+and upon providing some input return the matched ``Plan``.
 
-*Use case:* you have an endpoint for receiving emails which you need to parse based on some parameter,
-having one callback executed if incoming email comes from ``.*@gmail.com`` domain, other from `.*@yahoo.com`,
-and handling special cases when subject of email has ``VIP`` in it. 
+I.e. you may have one `Plan` matching `*@gmail` addresses, other one matching `*@yahoo.com` addresses.
+Provided the input, package will return either first or second plan, depending on the actual address 
+provided.
 
 ## Installation
 
-Install the package through composer. It is automatically registered as a Laravel service provider, so no additional actions are required.
+Install the package through composer. It is automatically registered as a Laravel service provider, 
+so no additional actions are required.
 
 ``composer require asseco-voice/laravel-plan-router``
 
@@ -29,8 +30,16 @@ Attribute to match regex against.
 ### Plan
 
 A user-friendly name for set of regex matches which must be matched in order for the plan to be hit.
-``Plan`` is thus a many-to-many relation with `Match` for which you can define the actual
+``Plan`` is a many-to-many relation with `Match` for which you can define the actual
 regex in a pivot table.
+
+I.e.
+```
+Plan 1 -> from     *@gmail.com
+       -> subject  *VIP*
+
+Plan 2 -> from     *@yahoo.com
+```
 
 `priority` if two plans are a hit at the same time, higher priority plan
 has greater precedence, and if hit, all other callbacks which might be a match won't be hit.
@@ -38,9 +47,6 @@ has greater precedence, and if hit, all other callbacks which might be a match w
 ``match_either`` - functions as an OR/AND gate. If set to `true`, having more than one match defined,
 only one has to be matched for a plan to be hit. If set to ``false``, all matches need to be hit in order
 for that particular plan to be hit.  
-
-Example: you can have a "VIP Gmail clients" plan which can hit when both ``to: .*@gmail.com`` and `subject: VIP` 
-clauses are hit.
 
 ## Setup
 
