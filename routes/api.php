@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('api')
     ->middleware('api')
     ->group(function () {
-
         Route::apiResource('matches', MatchController::class)->only('index');
         Route::apiResource('plans', PlanController::class);
         Route::apiResource('plan-model-values', PlanModelValueController::class);
-
     });
