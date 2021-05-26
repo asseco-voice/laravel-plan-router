@@ -32,7 +32,7 @@ A user-friendly name for set of regex matches which must be matched in order for
 ``Plan`` is thus a many-to-many relation with `Match` for which you can define the actual
 regex in a pivot table.
 
-`priority` if two plans for two different skill groups are a hit at the same time, higher priority plan
+`priority` if two plans are a hit at the same time, higher priority plan
 has greater precedence, and if hit, all other callbacks which might be a match won't be hit.
 
 ``match_either`` - functions as an OR/AND gate. If set to `true`, having more than one match defined,
@@ -42,22 +42,11 @@ for that particular plan to be hit.
 Example: you can have a "VIP Gmail clients" plan which can hit when both ``to: .*@gmail.com`` and `subject: VIP` 
 clauses are hit.
 
-### Skill group
-
-Entity representing a group of people to which the plan must be assigned so that you can have one group
-handling i.e. "VIP Gmail clients" and other group handling "Regular clients".
-
-If you don't have a valid use case for many skill groups, you can use a single default group.
-
 ## Setup
 
 In order to use the package, there are several steps to be followed:
 
 1. Run migrations with ``artisan migrate``
-1. If you have a need to modify migrations, you can publish them with
-``artisan vendor:publish --tag=asseco-plan-router`` and modify `skill_groups`
-table if necessary, other are best left intact. Be sure to set the ``runs_migrations``
-in the published config file to ``false`` in that case.
 1. Run (or include in your `DatabaseSeeder`) ``PlanRouterPackageSeeder`` to seed dummy data. 
 For production, only `MatchSeeder` will be ran as it is the only one mandatory for package to function.
 It defines what can your **raw** payload match by.
@@ -68,5 +57,3 @@ Details about ``CanMatch`` implementation can be seen in
 [original package documentation](https://github.com/asseco-voice/laravel-inbox).
 This will return a matched ``Plan`` in case of a successful match, or `null` in case of no 
 match.
-1. If you are using ``SkillGroups`` from the package, you may add `Skillable` trait to your model to
-expose the relationship.

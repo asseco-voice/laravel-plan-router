@@ -25,12 +25,10 @@ class PlanRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'           => 'required|string',
-            'description'    => 'nullable|string',
-            'priority'       => 'integer',
-            'match_either'   => 'boolean',
-            'template_id'    => 'nullable|integer|exists:plan_templates,id',
-            'skill_group_id' => 'required|integer|exists:skill_groups,id',
+            'name'         => 'required|string',
+            'description'  => 'nullable|string',
+            'priority'     => 'integer',
+            'match_either' => 'boolean',
         ];
     }
 
@@ -41,7 +39,7 @@ class PlanRequest extends FormRequest
      */
     public function withValidator(Validator $validator)
     {
-        $requiredOnCreate = ['name', 'skill_group_id'];
+        $requiredOnCreate = ['name'];
 
         $validator->sometimes($requiredOnCreate, 'sometimes', function () {
             return $this->plan !== null;

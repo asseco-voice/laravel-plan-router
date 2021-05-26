@@ -26,8 +26,6 @@ class PlanFactory extends Factory
             'description'    => $this->faker->word,
             'priority'       => $this->faker->numberBetween(0, 100),
             'match_either'   => $this->faker->boolean,
-            'template_id'    => null,
-            'skill_group_id' => null,
             'created_at'     => now(),
             'updated_at'     => now(),
         ];

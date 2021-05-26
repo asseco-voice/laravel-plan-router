@@ -19,8 +19,6 @@ class CreatePlansTable extends Migration
             $table->string('description')->nullable();
             $table->integer('priority')->default(false);
             $table->boolean('match_either')->default(false);
-            $table->foreignId('template_id')->nullable()->constrained('plan_templates')->cascadeOnDelete();
-            $table->foreignId('skill_group_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

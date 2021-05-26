@@ -3,7 +3,6 @@
 namespace Asseco\PlanRouter\Tests\Feature\Http\Controllers;
 
 use Asseco\PlanRouter\App\Models\Plan;
-use Asseco\PlanRouter\App\Models\SkillGroup;
 use Asseco\PlanRouter\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -17,9 +16,7 @@ class PlanControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->plan = Plan::factory()
-            ->for(SkillGroup::factory()->create())
-            ->create();
+        $this->plan = Plan::factory()->create();
     }
 
     /**
@@ -51,12 +48,10 @@ class PlanControllerTest extends TestCase
      */
     public function can_create_a_new_plan_if_it_doesnt_exist()
     {
-        $skillGroup = SkillGroup::factory()->create();
         $plan = Plan::factory()->make();
 
         $response = $this->postJson(route('plans.store'), [
-            'name'           => $plan->name,
-            'skill_group_id' => $skillGroup->id,
+            'name' => $plan->name,
         ]);
 
         $response->assertStatus(200)->assertJson([
@@ -99,8 +94,6 @@ class PlanControllerTest extends TestCase
             'description',
             'priority',
             'match_either',
-            'template_id',
-            'skill_group_id',
             'created_at',
             'updated_at',
         ];
