@@ -61,7 +61,7 @@ class PlanModelValueControllerTest extends TestCase
 
         $data = [
             'attribute' => 'test',
-            'value'     => 'test'
+            'value'     => 'test',
         ];
 
         $this

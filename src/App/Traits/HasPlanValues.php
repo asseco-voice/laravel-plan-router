@@ -24,7 +24,6 @@ trait HasPlanValues
 
         /** @var PlanModelValue $value */
         foreach ($values as $value) {
-
             if (method_exists($this, $value->attribute)) {
                 $this->updateRelation($value, $className);
                 continue;

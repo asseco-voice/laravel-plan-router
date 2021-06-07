@@ -38,7 +38,7 @@ class PlanModelValueRequest extends FormRequest
      */
     public function withValidator(Validator $validator)
     {
-        $requiredOnCreate = ['plan_id', 'attribute', 'value',];
+        $requiredOnCreate = ['plan_id', 'attribute', 'value'];
 
         $validator->sometimes($requiredOnCreate, 'sometimes', function () {
             return $this->plan_model_value !== null;
