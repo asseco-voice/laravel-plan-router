@@ -5,7 +5,6 @@ namespace Asseco\PlanRouter\App\Models;
 use Asseco\PlanRouter\Database\Factories\PlanFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
@@ -14,7 +13,7 @@ class Plan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'order', 'match_either', 'template_id', 'skill_group_id'];
+    protected $fillable = ['name', 'description', 'order', 'match_either'];
 
     protected static function newFactory()
     {
@@ -28,16 +27,6 @@ class Plan extends Model
             ->withTimestamps();
     }
 
-    public function planTemplate(): BelongsTo
-    {
-        return $this->belongsTo(PlanTemplate::class, 'template_id');
-    }
-
-    public function skillGroup(): BelongsTo
-    {
-        return $this->belongsTo(SkillGroup::class);
-    }
-
     public function values(): HasMany
     {
         return $this->hasMany(PlanModelValue::class);
@@ -45,6 +34,6 @@ class Plan extends Model
 
     public static function getWithRelations(): Collection
     {
-        return self::with(['matches', 'skillGroup'])->get();
+        return self::with(['matches'])->get();
     }
 }

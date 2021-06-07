@@ -3,8 +3,6 @@
 namespace Asseco\PlanRouter\Database\Seeders;
 
 use Asseco\PlanRouter\App\Models\Plan;
-use Asseco\PlanRouter\App\Models\PlanTemplate;
-use Asseco\PlanRouter\App\Models\SkillGroup;
 use Illuminate\Database\Seeder;
 
 class PlanSeeder extends Seeder
@@ -16,17 +14,7 @@ class PlanSeeder extends Seeder
      */
     public function run()
     {
-        $planTemplates = PlanTemplate::all();
-        $skillGroups = SkillGroup::all();
-
-        $plans = Plan::factory()->count(50)->raw([
-            'template_id'    => function () use ($planTemplates) {
-                return rand(0, 100) < 80 ? $planTemplates->random()->id : null;
-            },
-            'skill_group_id' => function () use ($skillGroups) {
-                return $skillGroups->random()->id;
-            },
-        ]);
+        $plans = Plan::factory()->count(50)->raw();
 
         Plan::query()->insert($plans);
     }

@@ -19,12 +19,9 @@ class PlanRouterPackageSeeder extends Seeder
 
         if (config('app.env') !== 'production') {
             $this->call([
-                SkillGroupSeeder::class,
-                PlanTemplateSeeder::class,
                 PlanSeeder::class,
-                PlanModelValuesSeeder::class,
                 PlanMatchSeeder::class,
-                PlanTemplateModelSeeder::class,
+                PlanModelValueSeeder::class,
             ]);
         }
     }

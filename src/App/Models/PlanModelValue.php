@@ -12,7 +12,7 @@ class PlanModelValue extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['plan_id', 'field_id', 'value'];
+    protected $fillable = ['plan_id', 'attribute', 'value'];
 
     protected static function newFactory()
     {

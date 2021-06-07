@@ -5,7 +5,7 @@ namespace Asseco\PlanRouter\App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
 
-class PlanRequest extends FormRequest
+class PlanModelValueRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,9 @@ class PlanRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'         => 'required|string',
-            'description'  => 'nullable|string',
-            'priority'     => 'integer',
-            'match_either' => 'boolean',
+            'plan_id'   => 'required|exists:plans,id',
+            'attribute' => 'required|string',
+            'value'     => 'required|string',
         ];
     }
 
@@ -39,10 +38,10 @@ class PlanRequest extends FormRequest
      */
     public function withValidator(Validator $validator)
     {
-        $requiredOnCreate = ['name'];
+        $requiredOnCreate = ['plan_id', 'attribute', 'value'];
 
         $validator->sometimes($requiredOnCreate, 'sometimes', function () {
-            return $this->plan !== null;
+            return $this->plan_model_value !== null;
         });
     }
 }
