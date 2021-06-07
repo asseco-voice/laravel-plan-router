@@ -16,7 +16,6 @@ class CreatePlanModelValuesTable extends Migration
         Schema::create('plan_model_values', function (Blueprint $table) {
             $table->id();
             $table->foreignId('plan_id')->constrained()->cascadeOnDelete();
-            $table->morphs('model');
             $table->string('attribute');
             $table->string('value');
             $table->timestamps();

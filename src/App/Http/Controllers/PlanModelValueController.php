@@ -2,10 +2,10 @@
 
 namespace Asseco\PlanRouter\App\Http\Controllers;
 
+use Asseco\PlanRouter\App\Http\Requests\PlanModelValueRequest;
 use Asseco\PlanRouter\App\Models\PlanModelValue;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class PlanModelValueController extends Controller
 {
@@ -22,12 +22,12 @@ class PlanModelValueController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param PlanModelValueRequest $request
      * @return JsonResponse
      */
-    public function store(Request $request): JsonResponse
+    public function store(PlanModelValueRequest $request): JsonResponse
     {
-        $planModelValue = PlanModelValue::query()->create($request->all());
+        $planModelValue = PlanModelValue::query()->create($request->validated());
 
         return response()->json($planModelValue->refresh());
     }
@@ -46,13 +46,13 @@ class PlanModelValueController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param PlanModelValueRequest $request
      * @param PlanModelValue $planModelValue
      * @return JsonResponse
      */
-    public function update(Request $request, PlanModelValue $planModelValue): JsonResponse
+    public function update(PlanModelValueRequest $request, PlanModelValue $planModelValue): JsonResponse
     {
-        $planModelValue->update($request->all());
+        $planModelValue->update($request->validated());
 
         return response()->json($planModelValue->refresh());
     }
