@@ -15,6 +15,15 @@ class InboxService
 {
     protected CanMatch $canMatch;
 
+    public Plan $plan;
+
+    public function __construct()
+    {
+        $model = config('asseco-plan-router.plan');
+
+        $this->plan = new $model;
+    }
+
     /**
      * @param CanMatch $canMatch
      * @return Plan|null
@@ -36,7 +45,7 @@ class InboxService
         $planId = Arr::get($matchedInbox->getMeta(), 'plan_id');
 
         /** @var Plan $plan */
-        $plan = Plan::query()->find($planId);
+        $plan = $this->plan::query()->find($planId);
 
         return $plan;
     }
@@ -46,7 +55,7 @@ class InboxService
      */
     protected function registerInboxes(): void
     {
-        $plans = Plan::getWithRelations();
+        $plans = $this->plan::getWithRelations();
 
         foreach ($plans as $plan) {
             $inbox = $this->createInbox($plan);
@@ -67,7 +76,7 @@ class InboxService
 
         $inbox
             ->meta(['plan_id' => $plan->id])
-            ->action(fn () => Log::info("Matched plan ID {$plan->id}."))
+            ->action(fn() => Log::info("Matched plan ID {$plan->id}."))
             ->matchEither($plan->match_either)
             ->priority($plan->priority);
 
@@ -91,6 +100,6 @@ class InboxService
 
     protected function registerFallback(): void
     {
-        InboxGroup::fallback(fn () => Log::info('Matched no plan.'));
+        InboxGroup::fallback(fn() => Log::info('Matched no plan.'));
     }
 }
