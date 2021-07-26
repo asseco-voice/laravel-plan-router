@@ -34,7 +34,7 @@ class PlanRouterServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/asseco-plan-router.php' => config_path('asseco-plan-router.php'),
         ], 'asseco-plan-router');
-        
+
         app()->singleton('inbox-service', InboxService::class);
     }
 }

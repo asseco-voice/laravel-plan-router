@@ -76,7 +76,7 @@ class InboxService
 
         $inbox
             ->meta(['plan_id' => $plan->id])
-            ->action(fn() => Log::info("Matched plan ID {$plan->id}."))
+            ->action(fn () => Log::info("Matched plan ID {$plan->id}."))
             ->matchEither($plan->match_either)
             ->priority($plan->priority);
 
@@ -100,6 +100,6 @@ class InboxService
 
     protected function registerFallback(): void
     {
-        InboxGroup::fallback(fn() => Log::info('Matched no plan.'));
+        InboxGroup::fallback(fn () => Log::info('Matched no plan.'));
     }
 }
