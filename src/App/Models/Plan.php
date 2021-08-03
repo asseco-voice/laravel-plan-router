@@ -22,14 +22,14 @@ class Plan extends Model
 
     public function matches(): BelongsToMany
     {
-        return $this->belongsToMany(Match::class)
+        return $this->belongsToMany(config('asseco-plan-router.match_model'))
             ->withPivot('regex')
             ->withTimestamps();
     }
 
     public function values(): HasMany
     {
-        return $this->hasMany(PlanModelValue::class);
+        return $this->hasMany(config('asseco-plan-router.plan_model_value_model'));
     }
 
     public static function getWithRelations(): Collection

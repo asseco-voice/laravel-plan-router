@@ -9,6 +9,15 @@ use Illuminate\Http\JsonResponse;
 
 class PlanController extends Controller
 {
+    public Plan $plan;
+
+    public function __construct()
+    {
+        $model = config('asseco-plan-router.plan_model');
+
+        $this->plan = new $model;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +25,7 @@ class PlanController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json(Plan::all());
+        return response()->json($this->plan::all());
     }
 
     /**
@@ -27,7 +36,7 @@ class PlanController extends Controller
      */
     public function store(PlanRequest $request): JsonResponse
     {
-        $plan = Plan::query()->create($request->validated());
+        $plan = $this->plan::query()->create($request->validated());
 
         return response()->json($plan->refresh());
     }

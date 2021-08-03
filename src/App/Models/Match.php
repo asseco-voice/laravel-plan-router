@@ -20,6 +20,6 @@ class Match extends Model
 
     public function plans(): BelongsToMany
     {
-        return $this->belongsToMany(Plan::class);
+        return $this->belongsToMany(config('asseco-plan-router.plan_model'));
     }
 }

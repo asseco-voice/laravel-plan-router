@@ -21,7 +21,7 @@ class PlanModelValue extends Model
 
     public function plan(): BelongsTo
     {
-        return $this->belongsTo(Plan::class);
+        return $this->belongsTo(config('asseco-plan-router.plan_model'));
     }
 
     public function model(): MorphTo
