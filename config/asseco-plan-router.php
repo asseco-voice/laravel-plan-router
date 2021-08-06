@@ -3,30 +3,22 @@
 use Asseco\PlanRouter\App\Models\Match;
 use Asseco\PlanRouter\App\Models\Plan;
 use Asseco\PlanRouter\App\Models\PlanModelValue;
-use Asseco\PlanRouter\App\Models\Uuid;
 
 return [
 
     /**
      * Should primary keys be UUIDs.
      */
-    'uuid'   => false,
+    'uuid'            => false,
 
     /**
      * Models defined here take precedence over package models, so be
      * sure to align them correctly if using UUIDs or standard IDs.
      */
-    'models' => [
+    'models'          => [
         'match'            => Match::class,
         'plan'             => Plan::class,
         'plan_model_value' => PlanModelValue::class,
-    ],
-
-    /**
-     * Decorator classes to be applied on all models
-     */
-    'decorators'      => [
-        Uuid::class
     ],
 
     /**
