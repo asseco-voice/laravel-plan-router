@@ -21,7 +21,7 @@ return [
      *    null      => will call timestamps() method on migrations
      *    'soft'    => will call timestamps() & softDeletes()
      *    'partial' => will call audit() method instead
-     *    'full'    => will call softDeleteAudit() method instead
+     *    'full'    => will call softDeleteAudit() method instead.
      *
      * @see https://github.com/asseco-voice/laravel-blueprint-audit
      */
