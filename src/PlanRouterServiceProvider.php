@@ -38,11 +38,11 @@ class PlanRouterServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../migrations' => database_path('migrations'),
-        ], 'asseco-plan-router');
+        ], 'asseco-plan-router-migrations');
 
         $this->publishes([
             __DIR__ . '/../config/asseco-plan-router.php' => config_path('asseco-plan-router.php'),
-        ], 'asseco-plan-router');
+        ], 'asseco-plan-router-config');
 
         $this->bindMatchModel();
         $this->bindPlanModel();

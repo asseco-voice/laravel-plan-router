@@ -3,6 +3,11 @@
 return [
 
     /**
+     * Should primary keys be UUIDs.
+     */
+    'uuid'                   => false,
+
+    /**
      * Models defined here take precedence over package models, so be
      * sure to align them correctly if using UUIDs or standard IDs.
      */
@@ -15,9 +20,4 @@ return [
      * and changing default migrations.
      */
     'runs_migrations'        => true,
-
-    /**
-     * Should primary keys be UUIDs.
-     */
-    'uuid'                   => false,
 ];
