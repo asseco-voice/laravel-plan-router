@@ -2,7 +2,7 @@
 
 namespace Asseco\PlanRouter\Database\Seeders;
 
-use Asseco\PlanRouter\App\Models\Plan;
+use Asseco\PlanRouter\App\Contracts\Plan;
 use Illuminate\Database\Seeder;
 
 class PlanSeeder extends Seeder
@@ -14,8 +14,11 @@ class PlanSeeder extends Seeder
      */
     public function run()
     {
-        $plans = Plan::factory()->count(50)->raw();
+        /** @var Plan $plan */
+        $plan = app(Plan::class);
 
-        Plan::query()->insert($plans);
+        $plans = $plan::factory()->count(50)->raw();
+
+        $plan::query()->insert($plans);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Asseco\PlanRouter\Database\Seeders;
 
-use Asseco\PlanRouter\App\Models\Match;
-use Asseco\PlanRouter\App\Models\Plan;
+use Asseco\PlanRouter\App\Contracts\Match;
+use Asseco\PlanRouter\App\Contracts\Plan;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
@@ -16,8 +16,13 @@ class PlanMatchSeeder extends Seeder
      */
     public function run()
     {
-        $plans = Plan::all();
-        $matches = Match::all('id')->pluck('id')->toArray();
+        /** @var Plan $plan */
+        $plan = app(Plan::class);
+        /** @var Match $match */
+        $match = app(Match::class);
+
+        $plans = $plan::all();
+        $matches = $match::all('id')->pluck('id')->toArray();
         $faker = Factory::create();
 
         /**

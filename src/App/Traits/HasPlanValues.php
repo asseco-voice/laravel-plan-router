@@ -2,8 +2,8 @@
 
 namespace Asseco\PlanRouter\App\Traits;
 
-use Asseco\PlanRouter\App\Models\Plan;
-use Asseco\PlanRouter\App\Models\PlanModelValue;
+use Asseco\PlanRouter\App\Contracts\Plan;
+use Asseco\PlanRouter\App\Contracts\PlanModelValue;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

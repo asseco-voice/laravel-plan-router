@@ -2,20 +2,18 @@
 
 namespace Asseco\PlanRouter\App\Http\Controllers;
 
+use Asseco\PlanRouter\App\Contracts\Plan as PlanContract;
 use Asseco\PlanRouter\App\Http\Requests\PlanRequest;
 use Asseco\PlanRouter\App\Models\Plan;
-use Exception;
 use Illuminate\Http\JsonResponse;
 
 class PlanController extends Controller
 {
-    public Plan $plan;
+    public PlanContract $plan;
 
-    public function __construct()
+    public function __construct(PlanContract $plan)
     {
-        $model = config('asseco-plan-router.plan_model');
-
-        $this->plan = new $model;
+        $this->plan = $plan;
     }
 
     /**
@@ -71,7 +69,6 @@ class PlanController extends Controller
      *
      * @param Plan $plan
      * @return JsonResponse
-     * @throws Exception
      */
     public function destroy(Plan $plan): JsonResponse
     {

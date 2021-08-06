@@ -2,13 +2,14 @@
 
 namespace Asseco\PlanRouter\App\Models;
 
+use Asseco\PlanRouter\App\Contracts\Plan;
 use Asseco\PlanRouter\Database\Factories\PlanModelValueFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class PlanModelValue extends Model
+class PlanModelValue extends Model implements \Asseco\PlanRouter\App\Contracts\PlanModelValue
 {
     use HasFactory;
 
@@ -21,7 +22,7 @@ class PlanModelValue extends Model
 
     public function plan(): BelongsTo
     {
-        return $this->belongsTo(config('asseco-plan-router.plan_model'));
+        return $this->belongsTo(app(Plan::class));
     }
 
     public function model(): MorphTo
