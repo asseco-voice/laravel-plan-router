@@ -14,7 +14,6 @@ use Asseco\PlanRouter\App\Models\Uuid\Match as UuidMatch;
 use Asseco\PlanRouter\App\Models\Uuid\Plan as UuidPlan;
 use Asseco\PlanRouter\App\Models\Uuid\PlanModelValue as UuidPlanModelValue;
 use Asseco\PlanRouter\App\Services\InboxService;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class PlanRouterServiceProvider extends ServiceProvider
@@ -50,7 +49,6 @@ class PlanRouterServiceProvider extends ServiceProvider
         $this->bindPlanModelValueModel();
 
         $this->app->singleton('inbox-service', function ($app) {
-
             $plan = $app->make(Plan::class);
 
             return new InboxService($plan);

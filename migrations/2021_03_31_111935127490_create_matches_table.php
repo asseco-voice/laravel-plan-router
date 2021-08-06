@@ -14,7 +14,6 @@ class CreateMatchesTable extends Migration
     public function up()
     {
         Schema::create('matches', function (Blueprint $table) {
-
             if (config('asseco-plan-router.uuid')) {
                 $table->uuid('id')->primary();
             } else {

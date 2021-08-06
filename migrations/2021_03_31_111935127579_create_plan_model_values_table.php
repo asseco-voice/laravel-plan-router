@@ -14,7 +14,6 @@ class CreatePlanModelValuesTable extends Migration
     public function up()
     {
         Schema::create('plan_model_values', function (Blueprint $table) {
-
             if (config('asseco-plan-router.uuid')) {
                 $table->uuid('id')->primary();
                 $table->foreignUuid('plan_id')->constrained()->cascadeOnDelete();

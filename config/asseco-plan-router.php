@@ -17,7 +17,7 @@ return [
     'runs_migrations'        => true,
 
     /**
-     * Should primary keys be UUIDs
+     * Should primary keys be UUIDs.
      */
     'uuid'                   => false,
 ];
