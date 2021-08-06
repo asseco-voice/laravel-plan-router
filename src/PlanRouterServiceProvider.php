@@ -7,17 +7,18 @@ namespace Asseco\PlanRouter;
 use Asseco\PlanRouter\App\Contracts\Match;
 use Asseco\PlanRouter\App\Contracts\Plan;
 use Asseco\PlanRouter\App\Contracts\PlanModelValue;
-use Asseco\PlanRouter\App\Models\Match as IdMatch;
-use Asseco\PlanRouter\App\Models\Plan as IdPlan;
-use Asseco\PlanRouter\App\Models\PlanModelValue as IdPlanModelValue;
-use Asseco\PlanRouter\App\Models\Uuid\Match as UuidMatch;
-use Asseco\PlanRouter\App\Models\Uuid\Plan as UuidPlan;
-use Asseco\PlanRouter\App\Models\Uuid\PlanModelValue as UuidPlanModelValue;
+use Asseco\PlanRouter\App\Models\Uuid;
 use Asseco\PlanRouter\App\Services\InboxService;
 use Illuminate\Support\ServiceProvider;
 
 class PlanRouterServiceProvider extends ServiceProvider
 {
+    protected array $contracts = [
+        Match::class,
+        Plan::class,
+        PlanModelValue::class,
+    ];
+
     /**
      * Register the application services.
      */
@@ -44,9 +45,8 @@ class PlanRouterServiceProvider extends ServiceProvider
             __DIR__ . '/../config/asseco-plan-router.php' => config_path('asseco-plan-router.php'),
         ], 'asseco-plan-router-config');
 
-        $this->bindMatchModel();
-        $this->bindPlanModel();
-        $this->bindPlanModelValueModel();
+        $this->bindModels();
+        $this->decorateUuid();
 
         $this->app->singleton('inbox-service', function ($app) {
             $plan = $app->make(Plan::class);
@@ -55,48 +55,23 @@ class PlanRouterServiceProvider extends ServiceProvider
         });
     }
 
-    protected function bindMatchModel(): void
+    protected function bindModels(): void
     {
-        $model = config('asseco-plan-router.match_model');
-
-        if (!$model) {
-            if (config('asseco-plan-router.uuid')) {
-                $model = UuidMatch::class;
-            } else {
-                $model = IdMatch::class;
-            }
-        }
-
-        $this->app->bind(Match::class, $model);
+        $this->app->bind(Match::class, config('asseco-plan-router.models.match'));
+        $this->app->bind(Plan::class, config('asseco-plan-router.models.plan'));
+        $this->app->bind(PlanModelValue::class, config('asseco-plan-router.models.plan_model_value'));
     }
 
-    protected function bindPlanModel(): void
+    protected function decorateUuid()
     {
-        $model = config('asseco-plan-router.plan_model');
-
-        if (!$model) {
-            if (config('asseco-plan-router.uuid')) {
-                $model = UuidPlan::class;
-            } else {
-                $model = IdPlan::class;
-            }
+        if (!config('asseco-plan-router.uuid')) {
+            return;
         }
 
-        $this->app->bind(Plan::class, $model);
-    }
-
-    protected function bindPlanModelValueModel(): void
-    {
-        $model = config('asseco-plan-router.plan_model_value_model');
-
-        if (!$model) {
-            if (config('asseco-plan-router.uuid')) {
-                $model = UuidPlanModelValue::class;
-            } else {
-                $model = IdPlanModelValue::class;
-            }
+        foreach ($this->contracts as $contract) {
+            $this->app->extend($contract, function ($model, $app) {
+                return new Uuid($model);
+            });
         }
-
-        $this->app->bind(PlanModelValue::class, $model);
     }
 }
