@@ -23,10 +23,10 @@ return [
     ],
 
     /**
-     * Decorator classes to be applied on all models
+     * Decorator classes to be applied on all models.
      */
     'decorators'      => [
-        Uuid::class
+        Uuid::class,
     ],
 
     /**
