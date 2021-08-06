@@ -1,6 +1,6 @@
 <?php
 
-namespace Asseco\Chassis\App\Traits;
+namespace Asseco\PlanRouter\App\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
