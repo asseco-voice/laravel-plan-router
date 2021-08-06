@@ -2,13 +2,13 @@
 
 namespace Asseco\PlanRouter\App\Models\Decorators;
 
-use Asseco\PlanRouter\App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Traits\ForwardsCalls;
 
-class Uuid
+class SoftDelete
 {
-    use ForwardsCalls, Uuids;
+    use ForwardsCalls, SoftDeletes;
 
     protected Model $model;
 

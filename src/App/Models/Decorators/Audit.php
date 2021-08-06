@@ -2,13 +2,12 @@
 
 namespace Asseco\PlanRouter\App\Models\Decorators;
 
-use Asseco\PlanRouter\App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Traits\ForwardsCalls;
 
-class Uuid
+class Audit
 {
-    use ForwardsCalls, Uuids;
+    use ForwardsCalls, \Asseco\BlueprintAudit\App\Traits\Audit;
 
     protected Model $model;
 

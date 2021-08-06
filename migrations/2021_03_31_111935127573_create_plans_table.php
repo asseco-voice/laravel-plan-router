@@ -1,5 +1,6 @@
 <?php
 
+use Asseco\PlanRouter\App\MigrationMethodPicker;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,7 +25,8 @@ class CreatePlansTable extends Migration
             $table->string('description')->nullable();
             $table->integer('priority')->default(false);
             $table->boolean('match_either')->default(false);
-            $table->timestamps();
+
+            MigrationMethodPicker::pick($table);
         });
     }
 

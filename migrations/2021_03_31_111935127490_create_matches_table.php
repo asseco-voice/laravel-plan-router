@@ -1,5 +1,6 @@
 <?php
 
+use Asseco\PlanRouter\App\MigrationMethodPicker;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,7 +22,8 @@ class CreateMatchesTable extends Migration
             }
 
             $table->string('name')->unique();
-            $table->timestamps();
+
+            MigrationMethodPicker::pick($table);
         });
     }
 

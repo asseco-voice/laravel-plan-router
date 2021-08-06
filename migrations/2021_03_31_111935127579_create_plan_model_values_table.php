@@ -1,5 +1,6 @@
 <?php
 
+use Asseco\PlanRouter\App\MigrationMethodPicker;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,7 +25,8 @@ class CreatePlanModelValuesTable extends Migration
 
             $table->string('attribute');
             $table->string('value');
-            $table->timestamps();
+
+            MigrationMethodPicker::pick($table);
         });
     }
 

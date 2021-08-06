@@ -7,8 +7,9 @@ namespace Asseco\PlanRouter;
 use Asseco\PlanRouter\App\Contracts\Match;
 use Asseco\PlanRouter\App\Contracts\Plan;
 use Asseco\PlanRouter\App\Contracts\PlanModelValue;
-use Asseco\PlanRouter\App\Models\Uuid;
+use Asseco\PlanRouter\App\Models\Decorators\Uuid;
 use Asseco\PlanRouter\App\Services\InboxService;
+use Exception;
 use Illuminate\Support\ServiceProvider;
 
 class PlanRouterServiceProvider extends ServiceProvider
@@ -71,6 +72,30 @@ class PlanRouterServiceProvider extends ServiceProvider
         foreach ($this->contracts as $contract) {
             $this->app->extend($contract, function ($model, $app) {
                 return new Uuid($model);
+            });
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected function decorateAudit()
+    {
+        $audit = config('asseco-plan-router.audit');
+
+        if (!$audit) {
+            return;
+        }
+
+        $decorator = config('asseco-plan-router.audit_decorators')[$audit];
+
+        if (!$decorator) {
+            throw new Exception("Decorator $audit must be defined.");
+        }
+
+        foreach ($this->contracts as $contract) {
+            $this->app->extend($contract, function ($model, $app) use ($decorator) {
+                return new $decorator($model);
             });
         }
     }
