@@ -4,6 +4,7 @@ namespace Asseco\PlanRouter\Database\Factories;
 
 use Asseco\PlanRouter\App\Models\Match;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class MatchFactory extends Factory
 {
@@ -21,8 +22,16 @@ class MatchFactory extends Factory
      */
     public function definition()
     {
-        return [
+        $data = [
             'name' => $this->faker->unique()->word,
         ];
+
+        if (config('asseco-plan-router.uuid')) {
+            $data = array_merge($data, [
+                'id' => Str::uuid(),
+            ]);
+        }
+
+        return $data;
     }
 }

@@ -14,9 +14,16 @@ class CreateMatchPlanTable extends Migration
     public function up()
     {
         Schema::create('match_plan', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('plan_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('match_id')->constrained()->cascadeOnDelete();
+            if (config('asseco-plan-router.uuid')) {
+                $table->uuid('id')->primary();
+                $table->foreignUuid('plan_id')->constrained()->cascadeOnDelete();
+                $table->foreignUuid('match_id')->constrained()->cascadeOnDelete();
+            } else {
+                $table->id();
+                $table->foreignId('plan_id')->constrained()->cascadeOnDelete();
+                $table->foreignId('match_id')->constrained()->cascadeOnDelete();
+            }
+
             $table->string('regex');
             $table->unique(['plan_id', 'match_id']);
             $table->timestamps();

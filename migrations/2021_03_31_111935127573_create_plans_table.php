@@ -14,7 +14,13 @@ class CreatePlansTable extends Migration
     public function up()
     {
         Schema::create('plans', function (Blueprint $table) {
-            $table->id();
+
+            if (config('asseco-plan-router.uuid')) {
+                $table->uuid('id')->primary();
+            } else {
+                $table->id();
+            }
+
             $table->string('name');
             $table->string('description')->nullable();
             $table->integer('priority')->default(false);

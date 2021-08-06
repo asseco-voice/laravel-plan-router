@@ -17,11 +17,9 @@ class InboxService
 
     public Plan $plan;
 
-    public function __construct()
+    public function __construct(Plan $plan)
     {
-        $model = config('asseco-plan-router.plan');
-
-        $this->plan = new $model;
+        $this->plan = new $plan;
     }
 
     /**

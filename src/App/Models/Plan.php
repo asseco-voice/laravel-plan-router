@@ -2,6 +2,8 @@
 
 namespace Asseco\PlanRouter\App\Models;
 
+use Asseco\PlanRouter\App\Contracts\Match;
+use Asseco\PlanRouter\App\Contracts\PlanModelValue;
 use Asseco\PlanRouter\Database\Factories\PlanFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
-class Plan extends Model
+class Plan extends Model implements \Asseco\PlanRouter\App\Contracts\Plan
 {
     use HasFactory;
 
@@ -22,14 +24,14 @@ class Plan extends Model
 
     public function matches(): BelongsToMany
     {
-        return $this->belongsToMany(config('asseco-plan-router.match_model'))
+        return $this->belongsToMany(app(Match::class))
             ->withPivot('regex')
             ->withTimestamps();
     }
 
     public function values(): HasMany
     {
-        return $this->hasMany(config('asseco-plan-router.plan_model_value_model'));
+        return $this->hasMany(app(PlanModelValue::class));
     }
 
     public static function getWithRelations(): Collection

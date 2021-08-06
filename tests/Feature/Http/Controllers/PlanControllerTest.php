@@ -66,15 +66,14 @@ class PlanControllerTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $response = $this->putJson(route('plans.update', $this->plan->id), [
+        $data = [
             'name'        => 'test',
             'description' => 'test',
-        ]);
+        ];
 
-        $response->assertStatus(200)->assertJson([
-            'name'        => 'test',
-            'description' => 'test',
-        ]);
+        $this->putJson(route('plans.update', $this->plan->id), $data)
+            ->assertStatus(200)
+            ->assertJson($data);
     }
 
     /**

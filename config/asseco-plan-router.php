@@ -1,18 +1,23 @@
 <?php
 
-use Asseco\PlanRouter\App\Models\Match;
-use Asseco\PlanRouter\App\Models\Plan;
-use Asseco\PlanRouter\App\Models\PlanModelValue;
-
 return [
 
-    'match_model'            => Match::class,
-    'plan_model'             => Plan::class,
-    'plan_model_value_model' => PlanModelValue::class,
+    /**
+     * Models defined here take precedence over package models, so be
+     * sure to align them correctly if using UUIDs or standard IDs.
+     */
+    'match_model'            => null, // Match::class,
+    'plan_model'             => null, // Plan::class,
+    'plan_model_value_model' => null, // PlanModelValue::class,
 
     /**
      * Should the package run the migrations. Set to false if you're publishing
      * and changing default migrations.
      */
     'runs_migrations'        => true,
+
+    /**
+     * Should primary keys be UUIDs
+     */
+    'uuid'                   => false,
 ];
