@@ -26,7 +26,7 @@ class CreatePlanModelValuesTable extends Migration
             $table->string('attribute');
             $table->string('value');
 
-            MigrationMethodPicker::pick($table);
+            MigrationMethodPicker::pick($table, config('asseco-plan-router.migration'));
         });
     }
 

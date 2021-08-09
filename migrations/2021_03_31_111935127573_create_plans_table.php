@@ -26,7 +26,7 @@ class CreatePlansTable extends Migration
             $table->integer('priority')->default(false);
             $table->boolean('match_either')->default(false);
 
-            MigrationMethodPicker::pick($table);
+            MigrationMethodPicker::pick($table, config('asseco-plan-router.migration'));
         });
     }
 

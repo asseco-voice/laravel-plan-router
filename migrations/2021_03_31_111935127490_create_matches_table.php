@@ -23,7 +23,7 @@ class CreateMatchesTable extends Migration
 
             $table->string('name')->unique();
 
-            MigrationMethodPicker::pick($table);
+            MigrationMethodPicker::pick($table, config('asseco-plan-router.migration'));
         });
     }
 
