@@ -1,5 +1,6 @@
 <?php
 
+use Asseco\BlueprintAudit\App\MigrationMethodPicker;
 use Asseco\PlanRouter\App\Models\Match;
 use Asseco\PlanRouter\App\Models\Plan;
 use Asseco\PlanRouter\App\Models\PlanModelValue;
@@ -7,28 +8,32 @@ use Asseco\PlanRouter\App\Models\PlanModelValue;
 return [
 
     /**
-     * Should primary keys be UUIDs.
+     * Model bindings
      */
-    'uuid'            => false,
-
-    /**
-     * @see https://github.com/asseco-voice/laravel-common/blob/master/config/asseco-common.php
-     */
-    'migration'       => null,
-
-    /**
-     * Models defined here take precedence over package models, so be
-     * sure to align them correctly if using UUIDs or standard IDs.
-     */
-    'models'          => [
+    'models' => [
         'match'            => Match::class,
         'plan'             => Plan::class,
         'plan_model_value' => PlanModelValue::class,
     ],
 
-    /**
-     * Should the package run the migrations. Set to false if you're publishing
-     * and changing default migrations.
-     */
-    'runs_migrations' => true,
+    'migrations' => [
+
+        /**
+         * UUIDs as primary keys
+         */
+        'uuid'       => false,
+
+        /**
+         * Timestamp types
+         *
+         * @see https://github.com/asseco-voice/laravel-common/blob/master/config/asseco-common.php
+         */
+        'timestamps' => MigrationMethodPicker::PLAIN,
+
+        /**
+         * Should the package run the migrations. Set to false if you're publishing
+         * and changing default migrations.
+         */
+        'run'        => true,
+    ],
 ];

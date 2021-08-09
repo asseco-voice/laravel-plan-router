@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Asseco\PlanRouter;
 
-use Asseco\Common\App\Decorator;
 use Asseco\PlanRouter\App\Contracts\Match;
 use Asseco\PlanRouter\App\Contracts\Plan;
 use Asseco\PlanRouter\App\Contracts\PlanModelValue;
@@ -13,12 +12,6 @@ use Illuminate\Support\ServiceProvider;
 
 class PlanRouterServiceProvider extends ServiceProvider
 {
-    protected array $contracts = [
-        Match::class,
-        Plan::class,
-        PlanModelValue::class,
-    ];
-
     /**
      * Register the application services.
      */
@@ -27,7 +20,7 @@ class PlanRouterServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/asseco-plan-router.php', 'asseco-plan-router');
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
 
-        if (config('asseco-plan-router.runs_migrations')) {
+        if (config('asseco-plan-router.migrations.run')) {
             $this->loadMigrationsFrom(__DIR__ . '/../migrations');
         }
     }
@@ -46,11 +39,6 @@ class PlanRouterServiceProvider extends ServiceProvider
         ], 'asseco-plan-router-config');
 
         $this->bindModels();
-
-        //dd(config('asseco-common'));
-
-        Decorator::uuid($this->contracts);
-        Decorator::migrations($this->contracts, config('asseco-plan-router.migration'));
 
         $this->app->singleton('inbox-service', function ($app) {
             $plan = $app->make(Plan::class);
