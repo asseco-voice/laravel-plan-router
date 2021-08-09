@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "254d7cee4fe65b9162c0265eed53d1d3",
+    "content-hash": "bacd2e616f4c3e9ed2984e4d03082bd2",
     "packages": [
         {
             "name": "asseco-voice/laravel-blueprint-audit",
-            "version": "dev-master",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/asseco-voice/laravel-blueprint-audit.git",
-                "reference": "650ce7c0956112445facd620225d76f4e66d0c62"
+                "reference": "561a52e6ed1fa9f65b092eddf8b0282c123c632d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asseco-voice/laravel-blueprint-audit/zipball/650ce7c0956112445facd620225d76f4e66d0c62",
-                "reference": "650ce7c0956112445facd620225d76f4e66d0c62",
+                "url": "https://api.github.com/repos/asseco-voice/laravel-blueprint-audit/zipball/561a52e6ed1fa9f65b092eddf8b0282c123c632d",
+                "reference": "561a52e6ed1fa9f65b092eddf8b0282c123c632d",
                 "shasum": ""
             },
             "require": {
@@ -30,7 +30,6 @@
                 "orchestra/testbench": "^6.0",
                 "phpunit/phpunit": "9.4"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -57,26 +56,26 @@
             ],
             "support": {
                 "issues": "https://github.com/asseco-voice/laravel-blueprint-audit/issues",
-                "source": "https://github.com/asseco-voice/laravel-blueprint-audit/tree/master"
+                "source": "https://github.com/asseco-voice/laravel-blueprint-audit/tree/v0.2.0"
             },
-            "time": "2021-08-09T11:48:51+00:00"
+            "time": "2021-08-09T12:05:34+00:00"
         },
         {
             "name": "asseco-voice/laravel-common",
-            "version": "dev-master",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/asseco-voice/laravel-common.git",
-                "reference": "7df6704e63ddd9bfec650d7ed0999a29d9367816"
+                "reference": "9f2970e3831fce23d42406b631f7c2f105a65915"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asseco-voice/laravel-common/zipball/7df6704e63ddd9bfec650d7ed0999a29d9367816",
-                "reference": "7df6704e63ddd9bfec650d7ed0999a29d9367816",
+                "url": "https://api.github.com/repos/asseco-voice/laravel-common/zipball/9f2970e3831fce23d42406b631f7c2f105a65915",
+                "reference": "9f2970e3831fce23d42406b631f7c2f105a65915",
                 "shasum": ""
             },
             "require": {
-                "asseco-voice/laravel-blueprint-audit": "dev-master",
+                "asseco-voice/laravel-blueprint-audit": "~0.1",
                 "laravel/framework": "^8.0",
                 "php": "^7.4 || ^8.0"
             },
@@ -86,7 +85,6 @@
                 "orchestra/testbench": "^6.0",
                 "phpunit/phpunit": "9.4"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -113,9 +111,9 @@
             ],
             "support": {
                 "issues": "https://github.com/asseco-voice/laravel-common/issues",
-                "source": "https://github.com/asseco-voice/laravel-common/tree/master"
+                "source": "https://github.com/asseco-voice/laravel-common/tree/v0.3.0"
             },
-            "time": "2021-08-09T11:15:39+00:00"
+            "time": "2021-08-09T12:10:29+00:00"
         },
         {
             "name": "asseco-voice/laravel-inbox",
@@ -7850,9 +7848,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "asseco-voice/laravel-common": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
