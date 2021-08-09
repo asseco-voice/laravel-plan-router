@@ -64,8 +64,6 @@ class PlanControllerTest extends TestCase
      */
     public function can_update_an_existing_plan()
     {
-        $this->withoutExceptionHandling();
-
         $data = [
             'name'        => 'test',
             'description' => 'test',
