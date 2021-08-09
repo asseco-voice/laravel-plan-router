@@ -20,7 +20,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     {
         return [
             CommonServiceProvider::class,
-            PlanRouterServiceProvider::class
+            PlanRouterServiceProvider::class,
         ];
     }
 }
