@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6eb8e50ec61d8e4cfeb42f35c1710201",
+    "content-hash": "46c51794c778b10c9e30431fb127d37a",
     "packages": [
         {
-            "name": "asseco-voice/laravel-blueprint-audit",
-            "version": "v0.1.1",
+            "name": "asseco-voice/laravel-common",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/asseco-voice/laravel-blueprint-audit.git",
-                "reference": "88d5b22df94101452069db23068944e3a19866b7"
+                "url": "https://github.com/asseco-voice/laravel-common.git",
+                "reference": "7d2dcfb0341d53d6617a923e860149b2dc48e46a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asseco-voice/laravel-blueprint-audit/zipball/88d5b22df94101452069db23068944e3a19866b7",
-                "reference": "88d5b22df94101452069db23068944e3a19866b7",
+                "url": "https://api.github.com/repos/asseco-voice/laravel-common/zipball/7d2dcfb0341d53d6617a923e860149b2dc48e46a",
+                "reference": "7d2dcfb0341d53d6617a923e860149b2dc48e46a",
                 "shasum": ""
             },
             "require": {
@@ -30,24 +30,25 @@
                 "orchestra/testbench": "^6.0",
                 "phpunit/phpunit": "9.4"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Asseco\\BlueprintAudit\\BlueprintAuditServiceProvider"
+                        "Asseco\\Common\\CommonServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Asseco\\BlueprintAudit\\": "src/"
+                    "Asseco\\Common\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "description": "Laravel support for additional blueprint methods",
+            "description": "Laravel common",
             "keywords": [
                 "database",
                 "laravel",
@@ -55,10 +56,10 @@
                 "php"
             ],
             "support": {
-                "issues": "https://github.com/asseco-voice/laravel-blueprint-audit/issues",
-                "source": "https://github.com/asseco-voice/laravel-blueprint-audit/tree/v0.1.1"
+                "issues": "https://github.com/asseco-voice/laravel-common/issues",
+                "source": "https://github.com/asseco-voice/laravel-common/tree/master"
             },
-            "time": "2021-08-06T12:03:00+00:00"
+            "time": "2021-08-09T07:38:33+00:00"
         },
         {
             "name": "asseco-voice/laravel-inbox",
@@ -7293,7 +7294,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "asseco-voice/laravel-common": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

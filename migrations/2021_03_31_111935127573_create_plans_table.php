@@ -1,6 +1,6 @@
 <?php
 
-use Asseco\PlanRouter\App\MigrationMethodPicker;
+use Asseco\Common\App\MigrationMethodPicker;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
