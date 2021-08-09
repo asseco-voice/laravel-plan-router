@@ -7,20 +7,75 @@
     "content-hash": "46c51794c778b10c9e30431fb127d37a",
     "packages": [
         {
+            "name": "asseco-voice/laravel-blueprint-audit",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asseco-voice/laravel-blueprint-audit.git",
+                "reference": "88d5b22df94101452069db23068944e3a19866b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asseco-voice/laravel-blueprint-audit/zipball/88d5b22df94101452069db23068944e3a19866b7",
+                "reference": "88d5b22df94101452069db23068944e3a19866b7",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^8.0",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.9.1",
+                "mockery/mockery": "^1.3.1",
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "9.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Asseco\\BlueprintAudit\\BlueprintAuditServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Asseco\\BlueprintAudit\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel support for additional blueprint methods",
+            "keywords": [
+                "database",
+                "laravel",
+                "microservices",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/asseco-voice/laravel-blueprint-audit/issues",
+                "source": "https://github.com/asseco-voice/laravel-blueprint-audit/tree/v0.1.1"
+            },
+            "time": "2021-08-06T12:03:00+00:00"
+        },
+        {
             "name": "asseco-voice/laravel-common",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/asseco-voice/laravel-common.git",
-                "reference": "7d2dcfb0341d53d6617a923e860149b2dc48e46a"
+                "reference": "c48212acb526ec72c2210189cde6a73ef8319c52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asseco-voice/laravel-common/zipball/7d2dcfb0341d53d6617a923e860149b2dc48e46a",
-                "reference": "7d2dcfb0341d53d6617a923e860149b2dc48e46a",
+                "url": "https://api.github.com/repos/asseco-voice/laravel-common/zipball/c48212acb526ec72c2210189cde6a73ef8319c52",
+                "reference": "c48212acb526ec72c2210189cde6a73ef8319c52",
                 "shasum": ""
             },
             "require": {
+                "asseco-voice/laravel-blueprint-audit": "^0.1.1",
                 "laravel/framework": "^8.0",
                 "php": "^7.4 || ^8.0"
             },
@@ -59,7 +114,7 @@
                 "issues": "https://github.com/asseco-voice/laravel-common/issues",
                 "source": "https://github.com/asseco-voice/laravel-common/tree/master"
             },
-            "time": "2021-08-09T07:38:33+00:00"
+            "time": "2021-08-09T07:51:31+00:00"
         },
         {
             "name": "asseco-voice/laravel-inbox",
