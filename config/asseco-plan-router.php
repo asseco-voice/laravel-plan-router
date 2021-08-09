@@ -8,7 +8,7 @@ use Asseco\PlanRouter\App\Models\PlanModelValue;
 return [
 
     /**
-     * Model bindings
+     * Model bindings.
      */
     'models' => [
         'match'            => Match::class,
@@ -19,12 +19,12 @@ return [
     'migrations' => [
 
         /**
-         * UUIDs as primary keys
+         * UUIDs as primary keys.
          */
         'uuid'       => false,
 
         /**
-         * Timestamp types
+         * Timestamp types.
          *
          * @see https://github.com/asseco-voice/laravel-common/blob/master/config/asseco-common.php
          */
