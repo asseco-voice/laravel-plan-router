@@ -24,7 +24,7 @@ class MatchSeeder extends Seeder
             ['name' => 'subject'],
         ];
 
-        if (config('asseco-plan-router.uuid')) {
+        if (config('asseco-plan-router.migrations.uuid')) {
             foreach ($data as &$item) {
                 $item = array_merge($item, [
                     'id' => Str::uuid(),
