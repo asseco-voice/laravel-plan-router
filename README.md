@@ -138,13 +138,6 @@ ID  plan_id attribute       value
 
 # Extending the package
 
-You can publish the configuration with ``php artisan vendor:publish --tag=asseco-plan-router-config``,
-and migrations (if needed) with ``php artisan vendor:publish --tag=asseco-plan-router-migrations``.
-
-By default, package uses autoincrement IDs, however you can switch the flag on ``uuid`` to make them
-use UUIDs instead. Package will bind the right model to the implementation if models are ``null``, but
-you can override that behavior by providing your custom models there. Just make sure custom models
-extend basic model.
-
-If you want to add things to migrations, publish them and set ``runs_migrations`` to `false` to prevent 
-conflicts. 
+Publishing the configuration will enable you to change package models as
+well as controlling how migrations behave. If extending the model, make sure
+you're extending the original model in your implementation.

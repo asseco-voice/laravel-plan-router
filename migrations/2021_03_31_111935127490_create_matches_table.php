@@ -1,5 +1,6 @@
 <?php
 
+use Asseco\BlueprintAudit\App\MigrationMethodPicker;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,14 +15,15 @@ class CreateMatchesTable extends Migration
     public function up()
     {
         Schema::create('matches', function (Blueprint $table) {
-            if (config('asseco-plan-router.uuid')) {
+            if (config('asseco-plan-router.migrations.uuid')) {
                 $table->uuid('id')->primary();
             } else {
                 $table->id();
             }
 
             $table->string('name')->unique();
-            $table->timestamps();
+
+            MigrationMethodPicker::pick($table, config('asseco-plan-router.migrations.timestamps'));
         });
     }
 

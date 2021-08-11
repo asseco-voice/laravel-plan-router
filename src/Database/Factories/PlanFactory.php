@@ -31,7 +31,7 @@ class PlanFactory extends Factory
             'updated_at'   => now(),
         ];
 
-        if (config('asseco-plan-router.uuid')) {
+        if (config('asseco-plan-router.migrations.uuid')) {
             $data = array_merge($data, [
                 'id' => Str::uuid(),
             ]);

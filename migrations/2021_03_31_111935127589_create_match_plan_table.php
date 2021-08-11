@@ -16,7 +16,7 @@ class CreateMatchPlanTable extends Migration
         Schema::create('match_plan', function (Blueprint $table) {
             $table->id();
 
-            if (config('asseco-plan-router.uuid')) {
+            if (config('asseco-plan-router.migrations.uuid')) {
                 $table->foreignUuid('plan_id')->constrained()->cascadeOnDelete();
                 $table->foreignUuid('match_id')->constrained()->cascadeOnDelete();
             } else {

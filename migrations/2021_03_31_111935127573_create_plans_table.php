@@ -1,5 +1,6 @@
 <?php
 
+use Asseco\BlueprintAudit\App\MigrationMethodPicker;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +15,7 @@ class CreatePlansTable extends Migration
     public function up()
     {
         Schema::create('plans', function (Blueprint $table) {
-            if (config('asseco-plan-router.uuid')) {
+            if (config('asseco-plan-router.migrations.uuid')) {
                 $table->uuid('id')->primary();
             } else {
                 $table->id();
@@ -24,7 +25,8 @@ class CreatePlansTable extends Migration
             $table->string('description')->nullable();
             $table->integer('priority')->default(false);
             $table->boolean('match_either')->default(false);
-            $table->timestamps();
+
+            MigrationMethodPicker::pick($table, config('asseco-plan-router.migrations.timestamps'));
         });
     }
 
