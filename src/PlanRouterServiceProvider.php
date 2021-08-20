@@ -8,6 +8,7 @@ use Asseco\PlanRouter\App\Contracts\Match;
 use Asseco\PlanRouter\App\Contracts\Plan;
 use Asseco\PlanRouter\App\Contracts\PlanModelValue;
 use Asseco\PlanRouter\App\Services\InboxService;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class PlanRouterServiceProvider extends ServiceProvider
@@ -52,5 +53,12 @@ class PlanRouterServiceProvider extends ServiceProvider
         $this->app->bind(Match::class, config('asseco-plan-router.models.match'));
         $this->app->bind(Plan::class, config('asseco-plan-router.models.plan'));
         $this->app->bind(PlanModelValue::class, config('asseco-plan-router.models.plan_model_value'));
+    }
+
+    protected function routeModelBinding()
+    {
+        Route::model('match', get_class(app(Match::class)));
+        Route::model('plan', get_class(app(Plan::class)));
+        Route::model('plan_model_value', get_class(app(PlanModelValue::class)));
     }
 }
