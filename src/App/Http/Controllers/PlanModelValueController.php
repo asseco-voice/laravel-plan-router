@@ -29,7 +29,7 @@ class PlanModelValueController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param PlanModelValueRequest $request
+     * @param  PlanModelValueRequest  $request
      * @return JsonResponse
      */
     public function store(PlanModelValueRequest $request): JsonResponse
@@ -42,7 +42,7 @@ class PlanModelValueController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param PlanModelValue $planModelValue
+     * @param  PlanModelValue  $planModelValue
      * @return JsonResponse
      */
     public function show(PlanModelValue $planModelValue): JsonResponse
@@ -53,8 +53,8 @@ class PlanModelValueController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param PlanModelValueRequest $request
-     * @param PlanModelValue $planModelValue
+     * @param  PlanModelValueRequest  $request
+     * @param  PlanModelValue  $planModelValue
      * @return JsonResponse
      */
     public function update(PlanModelValueRequest $request, PlanModelValue $planModelValue): JsonResponse
@@ -67,7 +67,7 @@ class PlanModelValueController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param PlanModelValue $planModelValue
+     * @param  PlanModelValue  $planModelValue
      * @return JsonResponse
      */
     public function destroy(PlanModelValue $planModelValue): JsonResponse
