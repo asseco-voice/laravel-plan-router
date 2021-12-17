@@ -14,15 +14,9 @@ class PlanRouterPackageSeeder extends Seeder
     public function run()
     {
         $this->call([
-            MatchSeeder::class,
+            PlanSeeder::class,
+            PlanMatchSeeder::class,
+            PlanModelValueSeeder::class,
         ]);
-
-        if (config('app.env') !== 'production') {
-            $this->call([
-                PlanSeeder::class,
-                PlanMatchSeeder::class,
-                PlanModelValueSeeder::class,
-            ]);
-        }
     }
 }
