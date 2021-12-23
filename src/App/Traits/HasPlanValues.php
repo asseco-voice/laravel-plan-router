@@ -15,7 +15,7 @@ trait HasPlanValues
     /**
      * Modify model attributes based on plan values from DB.
      *
-     * @param Plan|null $plan
+     * @param  Plan|null  $plan
      */
     public function applyPlanValues(?Plan $plan = null): void
     {
@@ -37,8 +37,8 @@ trait HasPlanValues
      * If there is no method with that name on a model instance, we are assuming it is
      * a model attribute.
      *
-     * @param PlanModelValue $value
-     * @param bool $className
+     * @param  PlanModelValue  $value
+     * @param  bool  $className
      */
     protected function updateAttribute(PlanModelValue $value, bool $className): void
     {
@@ -53,8 +53,8 @@ trait HasPlanValues
     /**
      * If method exists on this model instance, we are assuming it is a relation.
      *
-     * @param PlanModelValue $value
-     * @param bool $className
+     * @param  PlanModelValue  $value
+     * @param  bool  $className
      */
     protected function updateRelation(PlanModelValue $value, bool $className): void
     {

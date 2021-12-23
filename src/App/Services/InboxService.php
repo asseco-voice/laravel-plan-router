@@ -23,8 +23,9 @@ class InboxService
     }
 
     /**
-     * @param CanMatch $canMatch
+     * @param  CanMatch  $canMatch
      * @return Plan|null
+     *
      * @throws Exception
      */
     public function match(CanMatch $canMatch): ?Plan
@@ -62,8 +63,9 @@ class InboxService
     }
 
     /**
-     * @param Plan $plan
+     * @param  Plan  $plan
      * @return Inbox
+     *
      * @throws Exception
      */
     protected function createInbox(Plan $plan): Inbox
@@ -82,8 +84,9 @@ class InboxService
     }
 
     /**
-     * @param Collection $matches
-     * @param Inbox $inbox
+     * @param  Collection  $matches
+     * @param  Inbox  $inbox
+     *
      * @throws Exception
      */
     protected function registerInboxPatterns(Collection $matches, Inbox $inbox): void
