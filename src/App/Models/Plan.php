@@ -2,8 +2,8 @@
 
 namespace Asseco\PlanRouter\App\Models;
 
-use Asseco\PlanRouter\App\Contracts\Rule;
 use Asseco\PlanRouter\App\Contracts\PlanModelValue;
+use Asseco\PlanRouter\App\Contracts\Rule;
 use Asseco\PlanRouter\Database\Factories\PlanFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

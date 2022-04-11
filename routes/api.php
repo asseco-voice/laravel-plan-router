@@ -1,8 +1,8 @@
 <?php
 
-use Asseco\PlanRouter\App\Http\Controllers\RuleController;
 use Asseco\PlanRouter\App\Http\Controllers\PlanController;
 use Asseco\PlanRouter\App\Http\Controllers\PlanModelValueController;
+use Asseco\PlanRouter\App\Http\Controllers\RuleController;
 use Illuminate\Support\Facades\Route;
 
 /*

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Asseco\PlanRouter;
 
-use Asseco\PlanRouter\App\Contracts\Rule;
 use Asseco\PlanRouter\App\Contracts\Plan;
 use Asseco\PlanRouter\App\Contracts\PlanModelValue;
+use Asseco\PlanRouter\App\Contracts\Rule;
 use Asseco\PlanRouter\App\Services\InboxService;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;

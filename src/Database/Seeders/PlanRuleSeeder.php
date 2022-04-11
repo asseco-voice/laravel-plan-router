@@ -2,8 +2,8 @@
 
 namespace Asseco\PlanRouter\Database\Seeders;
 
-use Asseco\PlanRouter\App\Contracts\Rule;
 use Asseco\PlanRouter\App\Contracts\Plan;
+use Asseco\PlanRouter\App\Contracts\Rule;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 

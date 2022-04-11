@@ -1,9 +1,9 @@
 <?php
 
 use Asseco\BlueprintAudit\App\MigrationMethodPicker;
-use Asseco\PlanRouter\App\Models\Rule;
 use Asseco\PlanRouter\App\Models\Plan;
 use Asseco\PlanRouter\App\Models\PlanModelValue;
+use Asseco\PlanRouter\App\Models\Rule;
 
 return [
 
