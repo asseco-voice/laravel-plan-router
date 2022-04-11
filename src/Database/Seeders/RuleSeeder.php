@@ -2,12 +2,12 @@
 
 namespace Asseco\PlanRouter\Database\Seeders;
 
-use Asseco\PlanRouter\App\Contracts\Match;
+use Asseco\PlanRouter\App\Contracts\Rule;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-class MatchSeeder extends Seeder
+class RuleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -32,8 +32,8 @@ class MatchSeeder extends Seeder
             }
         }
 
-        /** @var Model $match */
-        $match = app(Match::class);
-        $match::query()->upsert($data, ['name'], ['name']);
+        /** @var Model $rule */
+        $rule = app(Rule::class);
+        $rule::query()->upsert($data, ['name'], ['name']);
     }
 }

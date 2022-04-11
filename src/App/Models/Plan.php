@@ -2,7 +2,7 @@
 
 namespace Asseco\PlanRouter\App\Models;
 
-use Asseco\PlanRouter\App\Contracts\Match;
+use Asseco\PlanRouter\App\Contracts\Rule;
 use Asseco\PlanRouter\App\Contracts\PlanModelValue;
 use Asseco\PlanRouter\Database\Factories\PlanFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,9 +22,9 @@ class Plan extends Model implements \Asseco\PlanRouter\App\Contracts\Plan
         return PlanFactory::new();
     }
 
-    public function matches(): BelongsToMany
+    public function rules(): BelongsToMany
     {
-        return $this->belongsToMany(app(Match::class))
+        return $this->belongsToMany(app(Rule::class))
             ->withPivot('regex')
             ->withTimestamps();
     }
@@ -36,6 +36,6 @@ class Plan extends Model implements \Asseco\PlanRouter\App\Contracts\Plan
 
     public static function getWithRelations(): Collection
     {
-        return self::with(['matches'])->get();
+        return self::with(['rules'])->get();
     }
 }

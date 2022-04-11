@@ -15,7 +15,7 @@ class PlanRouterPackageSeeder extends Seeder
     {
         $this->call([
             PlanSeeder::class,
-            PlanMatchSeeder::class,
+            PlanRuleSeeder::class,
             PlanModelValueSeeder::class,
         ]);
     }

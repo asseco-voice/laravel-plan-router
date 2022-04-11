@@ -1,7 +1,7 @@
 <?php
 
 use Asseco\BlueprintAudit\App\MigrationMethodPicker;
-use Asseco\PlanRouter\App\Models\Match;
+use Asseco\PlanRouter\App\Models\Rule;
 use Asseco\PlanRouter\App\Models\Plan;
 use Asseco\PlanRouter\App\Models\PlanModelValue;
 
@@ -11,7 +11,7 @@ return [
      * Model bindings.
      */
     'models' => [
-        'match'            => Match::class,
+        'rule'            => Rule::class,
         'plan'             => Plan::class,
         'plan_model_value' => PlanModelValue::class,
     ],

@@ -3,12 +3,12 @@
 namespace Asseco\PlanRouter\App\Models;
 
 use Asseco\PlanRouter\App\Contracts\Plan;
-use Asseco\PlanRouter\Database\Factories\MatchFactory;
+use Asseco\PlanRouter\Database\Factories\RuleFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Match extends Model implements \Asseco\PlanRouter\App\Contracts\Match
+class Rule extends Model implements \Asseco\PlanRouter\App\Contracts\Rule
 {
     use HasFactory;
 
@@ -16,7 +16,7 @@ class Match extends Model implements \Asseco\PlanRouter\App\Contracts\Match
 
     protected static function newFactory()
     {
-        return MatchFactory::new();
+        return RuleFactory::new();
     }
 
     public function plans(): BelongsToMany
