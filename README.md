@@ -19,7 +19,7 @@ so no additional actions are required.
 
 ## Terminology
 
-### Match
+### Rule
 
 Attribute to match regex against.
 
@@ -30,7 +30,7 @@ Attribute to match regex against.
 ### Plan
 
 A user-friendly name for set of regex matches which must be matched in order for the plan to be hit.
-``Plan`` is a many-to-many relation with `Match` for which you can define the actual
+``Plan`` is a many-to-many relation with `Rule` for which you can define the actual
 regex in a pivot table.
 
 I.e.
@@ -54,9 +54,9 @@ To set up the package:
 
 1. Run migrations with ``artisan migrate``
 1. Run (or include in your `DatabaseSeeder`) ``PlanRouterPackageSeeder`` to seed dummy data. 
-For production, only `MatchSeeder` will be ran as it is the only one mandatory for package to function.
+For production, only `RuleSeeder` will be run as it is the only one mandatory for package to function.
 It defines what can your **raw** payload match by.
-1. For any custom requirements, provide your own ``MatchSeeder`` instead of one from the package.
+1. For any custom requirements, provide your own ``RuleSeeder`` instead of one from the package.
 
 ## Usage
 
