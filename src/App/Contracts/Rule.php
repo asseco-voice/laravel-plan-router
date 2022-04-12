@@ -5,8 +5,8 @@ namespace Asseco\PlanRouter\App\Contracts;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @mixin Model|\Asseco\PlanRouter\App\Models\Match
+ * @mixin Model|\Asseco\PlanRouter\App\Models\Rule
  */
-interface Match
+interface Rule
 {
 }

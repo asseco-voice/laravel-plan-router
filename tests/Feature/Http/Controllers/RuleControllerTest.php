@@ -2,22 +2,22 @@
 
 namespace Asseco\PlanRouter\Tests\Feature\Http\Controllers;
 
-use Asseco\PlanRouter\App\Models\Match;
+use Asseco\PlanRouter\App\Models\Rule;
 use Asseco\PlanRouter\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class MatchControllerTest extends TestCase
+class RuleControllerTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
      * @test
      */
-    public function can_get_all_matches()
+    public function can_get_all_rules()
     {
-        Match::factory()->create();
+        Rule::factory()->create();
 
-        $response = $this->getJson(route('matches.index'));
+        $response = $this->getJson(route('rules.index'));
 
         $response->assertStatus(200)->assertJsonStructure([$this->modelAttributes()]);
     }

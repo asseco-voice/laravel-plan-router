@@ -2,12 +2,12 @@
 
 namespace Asseco\PlanRouter\Database\Seeders;
 
-use Asseco\PlanRouter\App\Contracts\Match;
 use Asseco\PlanRouter\App\Contracts\Plan;
+use Asseco\PlanRouter\App\Contracts\Rule;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
-class PlanMatchSeeder extends Seeder
+class PlanRuleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,26 +18,26 @@ class PlanMatchSeeder extends Seeder
     {
         /** @var Plan $plan */
         $plan = app(Plan::class);
-        /** @var Match $match */
-        $match = app(Match::class);
+        /** @var Rule $rule */
+        $rule = app(Rule::class);
 
         $plans = $plan::all();
-        $matches = $match::all('id')->pluck('id')->toArray();
+        $rules = $rule::all('id')->pluck('id')->toArray();
         $faker = Factory::create();
 
         /**
          * @var $plan Plan
          */
         foreach ($plans as $plan) {
-            $matchNumber = rand(1, 3);
+            $ruleNumber = rand(1, 3);
 
-            $matchRand = [];
-            for ($i = 0; $i < $matchNumber; $i++) {
-                $matchRand[$matches[array_rand($matches)]] =
+            $ruleRand = [];
+            for ($i = 0; $i < $ruleNumber; $i++) {
+                $ruleRand[$rules[array_rand($rules)]] =
                     ['regex' => '.*@' . explode('@', $faker->email)[1]];
             }
 
-            $plan->matches()->sync($matchRand);
+            $plan->rules()->sync($ruleRand);
         }
     }
 }

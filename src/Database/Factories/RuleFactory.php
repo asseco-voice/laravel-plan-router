@@ -2,18 +2,18 @@
 
 namespace Asseco\PlanRouter\Database\Factories;
 
-use Asseco\PlanRouter\App\Models\Match;
+use Asseco\PlanRouter\App\Models\Rule;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class MatchFactory extends Factory
+class RuleFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Match::class;
+    protected $model = Rule::class;
 
     /**
      * Define the model's default state.

@@ -72,7 +72,7 @@ class InboxService
     {
         $inbox = new Inbox();
 
-        $this->registerInboxPatterns($plan->matches, $inbox);
+        $this->registerInboxPatterns($plan->rules, $inbox);
 
         $inbox
             ->meta(['plan_id' => $plan->id])
