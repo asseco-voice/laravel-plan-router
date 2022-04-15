@@ -22,6 +22,21 @@ class Plan extends Model implements \Asseco\PlanRouter\App\Contracts\Plan
         return PlanFactory::new();
     }
 
+    protected static function booted()
+    {
+        static::creating(function (self $plan) {
+            config('asseco-plan-router.events.plan_created')::dispatch($plan);
+        });
+
+        static::updated(function (self $plan) {
+            config('asseco-plan-router.events.plan_updated')::dispatch($plan);
+        });
+
+        static::deleted(function (self $plan) {
+            config('asseco-plan-router.events.plan_deleted')::dispatch($plan);
+        });
+    }
+
     public function rules(): BelongsToMany
     {
         return $this->belongsToMany(app(Rule::class))

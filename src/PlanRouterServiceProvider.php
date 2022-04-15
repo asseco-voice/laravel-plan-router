@@ -46,6 +46,8 @@ class PlanRouterServiceProvider extends ServiceProvider
 
             return new InboxService($plan);
         });
+
+        $this->routeModelBinding();
     }
 
     protected function bindModels(): void
