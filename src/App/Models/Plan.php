@@ -24,7 +24,7 @@ class Plan extends Model implements \Asseco\PlanRouter\App\Contracts\Plan
 
     protected static function booted()
     {
-        static::creating(function (self $plan) {
+        static::created(function (self $plan) {
             config('asseco-plan-router.events.plan_created')::dispatch($plan);
         });
 
@@ -40,6 +40,7 @@ class Plan extends Model implements \Asseco\PlanRouter\App\Contracts\Plan
     public function rules(): BelongsToMany
     {
         return $this->belongsToMany(app(Rule::class))
+            ->using(app(PlanRule::class))
             ->withPivot('regex')
             ->withTimestamps();
     }

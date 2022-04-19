@@ -22,7 +22,7 @@ class PlanModelValue extends Model implements \Asseco\PlanRouter\App\Contracts\P
 
     protected static function booted()
     {
-        static::creating(function (self $planModelValue) {
+        static::created(function (self $planModelValue) {
             config('asseco-plan-router.events.plan_updated')::dispatch($planModelValue->plan);
         });
 

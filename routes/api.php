@@ -2,6 +2,7 @@
 
 use Asseco\PlanRouter\App\Http\Controllers\PlanController;
 use Asseco\PlanRouter\App\Http\Controllers\PlanModelValueController;
+use Asseco\PlanRouter\App\Http\Controllers\PlanRuleController;
 use Asseco\PlanRouter\App\Http\Controllers\RuleController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,10 @@ Route::prefix('api')
         Route::apiResource('rules', RuleController::class)->only('index');
         Route::apiResource('plans', PlanController::class);
         Route::apiResource('plan-model-values', PlanModelValueController::class);
+
+        Route::prefix('plans/{plan}')->name('plans.')->group(function () {
+            Route::post('rules', [PlanRuleController::class, 'store']);
+            Route::match(['put', 'patch'], 'rules', [PlanRuleController::class, 'update']);
+            Route::delete('rules', [PlanRuleController::class, 'destroy']);
+        });
     });

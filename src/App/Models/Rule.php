@@ -19,27 +19,6 @@ class Rule extends Model implements \Asseco\PlanRouter\App\Contracts\Rule
         return RuleFactory::new();
     }
 
-    protected static function booted()
-    {
-        static::creating(function (self $rule) {
-            foreach ($rule->plans as $plan) {
-                config('asseco-plan-router.events.plan_updated')::dispatch($plan);
-            }
-        });
-
-        static::updated(function (self $rule) {
-            foreach ($rule->plans as $plan) {
-                config('asseco-plan-router.events.plan_updated')::dispatch($plan);
-            }
-        });
-
-        static::deleted(function (self $rule) {
-            foreach ($rule->plans as $plan) {
-                config('asseco-plan-router.events.plan_updated')::dispatch($plan);
-            }
-        });
-    }
-
     public function plans(): BelongsToMany
     {
         return $this->belongsToMany(app(Plan::class));
