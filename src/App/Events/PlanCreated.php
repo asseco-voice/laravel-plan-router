@@ -17,7 +17,7 @@ class PlanCreated implements ShouldBroadcast
     /**
      * Create a new event instance.
      *
-     * @param Plan $plan
+     * @param  Plan  $plan
      */
     public function __construct(Plan $plan)
     {

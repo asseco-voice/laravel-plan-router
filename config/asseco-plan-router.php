@@ -46,5 +46,5 @@ return [
         'run'        => true,
     ],
 
-    'plan_event_topic' => env('PLAN_EVENT_TOPIC', 'plan_changed')
+    'plan_event_topic' => env('PLAN_EVENT_TOPIC', 'plan_changed'),
 ];

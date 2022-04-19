@@ -13,8 +13,8 @@ class PlanRuleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Plan $plan
-     * @param PlanRuleRequest $request
+     * @param  Plan  $plan
+     * @param  PlanRuleRequest  $request
      * @return JsonResponse
      */
     public function store(Plan $plan, PlanRuleRequest $request): JsonResponse
@@ -31,8 +31,8 @@ class PlanRuleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Plan $plan
-     * @param PlanRuleRequest $request
+     * @param  Plan  $plan
+     * @param  PlanRuleRequest  $request
      * @return JsonResponse
      */
     public function update(Plan $plan, PlanRuleRequest $request): JsonResponse
@@ -51,8 +51,8 @@ class PlanRuleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Plan $plan
-     * @param PlanRuleDeleteRequest $request
+     * @param  Plan  $plan
+     * @param  PlanRuleDeleteRequest  $request
      * @return JsonResponse
      */
     public function destroy(Plan $plan, PlanRuleDeleteRequest $request): JsonResponse
