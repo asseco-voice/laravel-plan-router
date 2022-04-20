@@ -33,7 +33,7 @@ class Plan extends Model implements \Asseco\PlanRouter\App\Contracts\Plan
         });
 
         static::deleted(function (self $plan) {
-            config('asseco-plan-router.events.plan_deleted')::dispatch($plan);
+            config('asseco-plan-router.events.plan_deleted')::dispatch($plan->id);
         });
     }
 
