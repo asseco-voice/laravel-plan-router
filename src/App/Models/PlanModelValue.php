@@ -20,6 +20,21 @@ class PlanModelValue extends Model implements \Asseco\PlanRouter\App\Contracts\P
         return PlanModelValueFactory::new();
     }
 
+    protected static function booted()
+    {
+        static::created(function (self $planModelValue) {
+            config('asseco-plan-router.events.plan_updated')::dispatch($planModelValue->plan);
+        });
+
+        static::updated(function (self $planModelValue) {
+            config('asseco-plan-router.events.plan_updated')::dispatch($planModelValue->plan);
+        });
+
+        static::deleted(function (self $planModelValue) {
+            config('asseco-plan-router.events.plan_updated')::dispatch($planModelValue->plan);
+        });
+    }
+
     public function plan(): BelongsTo
     {
         return $this->belongsTo(app(Plan::class));
