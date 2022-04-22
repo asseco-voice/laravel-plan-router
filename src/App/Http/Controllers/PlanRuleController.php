@@ -13,7 +13,7 @@ class PlanRuleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Plan $plan
+     * @param  Plan  $plan
      * @return JsonResponse
      */
     public function index(Plan $plan): JsonResponse
