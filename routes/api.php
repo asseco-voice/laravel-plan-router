@@ -25,6 +25,7 @@ Route::prefix('api')
         Route::apiResource('plan-model-values', PlanModelValueController::class);
 
         Route::prefix('plans/{plan}')->name('plans.')->group(function () {
+            Route::get('rules', [PlanRuleController::class, 'index'])->name('rules.index');
             Route::post('rules', [PlanRuleController::class, 'store'])->name('rules.store');
             Route::match(['put', 'patch'], 'rules', [PlanRuleController::class, 'update'])->name('rules.update');
             Route::delete('rules', [PlanRuleController::class, 'destroy'])->name('rules.destroy');

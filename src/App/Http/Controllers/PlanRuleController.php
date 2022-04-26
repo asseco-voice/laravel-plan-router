@@ -11,6 +11,17 @@ use Illuminate\Support\Arr;
 class PlanRuleController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
+     * @param  Plan  $plan
+     * @return JsonResponse
+     */
+    public function index(Plan $plan): JsonResponse
+    {
+        return response()->json($plan->rules);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  Plan  $plan
