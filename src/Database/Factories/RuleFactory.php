@@ -23,7 +23,8 @@ class RuleFactory extends Factory
     public function definition()
     {
         $data = [
-            'name' => $this->faker->unique()->word,
+            'name'  => $this->faker->unique()->word,
+            'label' => $this->faker->word,
         ];
 
         if (config('asseco-plan-router.migrations.uuid')) {
