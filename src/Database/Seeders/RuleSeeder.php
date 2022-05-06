@@ -35,7 +35,7 @@ class RuleSeeder extends Seeder
             ],
             [
                 'name'  => 'subject',
-                'label' => 'Subject'],
+                'label' => 'Subject', ],
         ];
 
         if (config('asseco-plan-router.migrations.uuid')) {
