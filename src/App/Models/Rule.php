@@ -12,7 +12,7 @@ class Rule extends Model implements \Asseco\PlanRouter\App\Contracts\Rule
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'label'];
 
     protected static function newFactory()
     {
