@@ -15,7 +15,7 @@ class Plan extends Model implements \Asseco\PlanRouter\App\Contracts\Plan
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'order', 'match_either'];
+    protected $fillable = ['name', 'description', 'order', 'match_either', 'priority'];
 
     protected static function newFactory()
     {
