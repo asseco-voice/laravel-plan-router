@@ -17,11 +17,25 @@ class RuleSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['name' => 'from'],
-            ['name' => 'to'],
-            ['name' => 'cc'],
-            ['name' => 'bcc'],
-            ['name' => 'subject'],
+            [
+                'name'  => 'from',
+                'label' => 'From',
+            ],
+            [
+                'name'  => 'to',
+                'label' => 'To',
+            ],
+            [
+                'name'  => 'cc',
+                'label' => 'Cc',
+            ],
+            [
+                'name'  => 'bcc',
+                'label' => 'Bcc',
+            ],
+            [
+                'name'  => 'subject',
+                'label' => 'Subject', ],
         ];
 
         if (config('asseco-plan-router.migrations.uuid')) {
