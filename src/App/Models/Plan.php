@@ -17,6 +17,10 @@ class Plan extends Model implements \Asseco\PlanRouter\App\Contracts\Plan
 
     protected $fillable = ['name', 'description', 'order', 'match_either', 'priority'];
 
+    protected $casts = [
+        'match_either'    => 'boolean',
+    ];
+
     protected static function newFactory()
     {
         return PlanFactory::new();
