@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('api')
-    ->middleware('api')
+Route::prefix(config('asseco-plan-router.routes.prefix'))
+    ->middleware(config('asseco-plan-router.routes.middleware'))
     ->group(function () {
         Route::apiResource('rules', RuleController::class)->only('index');
         Route::apiResource('plans', PlanController::class);
