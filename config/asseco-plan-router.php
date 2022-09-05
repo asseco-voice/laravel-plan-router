@@ -47,4 +47,9 @@ return [
     ],
 
     'plan_event_topic' => env('PLAN_EVENT_TOPIC', 'plan_changed'),
+
+    'routes' => [
+        'prefix'     => 'api',
+        'middleware' => ['api'],
+    ],
 ];
