@@ -23,4 +23,12 @@ class Rule extends Model implements \Asseco\PlanRouter\App\Contracts\Rule
     {
         return $this->belongsToMany(app(Plan::class));
     }
+
+    public static function getValidationRules(): array
+    {
+        return [
+            'name'  => 'required|string',
+            'label' => 'required|string'
+        ];
+    }
 }
