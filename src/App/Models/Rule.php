@@ -28,7 +28,7 @@ class Rule extends Model implements \Asseco\PlanRouter\App\Contracts\Rule
     {
         return [
             'name'  => 'required|string',
-            'label' => 'required|string'
+            'label' => 'required|string',
         ];
     }
 }
