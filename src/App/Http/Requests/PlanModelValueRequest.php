@@ -2,6 +2,7 @@
 
 namespace Asseco\PlanRouter\App\Http\Requests;
 
+use Asseco\PlanRouter\App\Contracts\PlanModelValue;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
 
@@ -24,11 +25,7 @@ class PlanModelValueRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'plan_id'   => 'required|exists:plans,id',
-            'attribute' => 'required|string',
-            'value'     => 'required|string',
-        ];
+        return get_class(app(PlanModelValue::class))::getValidationRules();
     }
 
     /**

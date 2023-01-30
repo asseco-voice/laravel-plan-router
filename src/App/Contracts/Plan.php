@@ -9,4 +9,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 interface Plan
 {
+    public static function getValidationRules(): array;
 }
