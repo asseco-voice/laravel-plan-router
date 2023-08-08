@@ -15,7 +15,7 @@ class PlanDeleted implements ShouldBroadcast
     /**
      * Create a new event instance.
      *
-     * @param $planId
+     * @param  $planId
      */
     public function __construct($planId)
     {
