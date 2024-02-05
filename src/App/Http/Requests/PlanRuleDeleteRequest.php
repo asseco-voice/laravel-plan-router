@@ -24,7 +24,7 @@ class PlanRuleDeleteRequest extends FormRequest
     public function rules()
     {
         return [
-            'rule_ids'   => 'required|array',
+            'rule_ids' => 'required|array',
             'rule_ids.*' => 'exists:rules,id',
         ];
     }

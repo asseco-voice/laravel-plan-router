@@ -23,12 +23,12 @@ class PlanFactory extends Factory
     public function definition()
     {
         $data = [
-            'name'         => $this->faker->word,
-            'description'  => $this->faker->word,
-            'priority'     => $this->faker->numberBetween(0, 100),
+            'name' => $this->faker->word,
+            'description' => $this->faker->word,
+            'priority' => $this->faker->numberBetween(0, 100),
             'match_either' => $this->faker->boolean,
-            'created_at'   => now(),
-            'updated_at'   => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         if (config('asseco-plan-router.migrations.uuid')) {

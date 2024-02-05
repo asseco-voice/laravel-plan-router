@@ -23,9 +23,10 @@ class InboxService
     }
 
     /**
-     * @param CanMatch $canMatch
-     * @param bool|null $multipleMatches
+     * @param  CanMatch  $canMatch
+     * @param  bool|null  $multipleMatches
      * @return Plan|array|Plan[]|null
+     *
      * @throws Exception
      */
     public function match(CanMatch $canMatch, ?bool $multipleMatches = false)
@@ -46,8 +47,7 @@ class InboxService
             $plan = $this->plan::query()->find($planId);
 
             return $plan;
-        }
-        else {
+        } else {
             // MOD: VSLIV30-2578
             // multiple plans could be matched
             $plans = [];
@@ -55,13 +55,13 @@ class InboxService
 
             if (!empty($matchedInboxes)) {
                 /** @var Inbox $inbox */
-                foreach($matchedInboxes as $inbox) {
+                foreach ($matchedInboxes as $inbox) {
                     $planId = Arr::get($inbox->getMeta(), 'plan_id');
                     if ($planId) {
                         /** @var Plan $plan */
                         $plan = $this->plan::query()->find($planId);
                         if ($plan) {
-                            $plans[ $plan->id ] = $plan;
+                            $plans[$plan->id] = $plan;
                         }
                     }
                 }
@@ -69,7 +69,6 @@ class InboxService
 
             return $plans;
         }
-
     }
 
     /**

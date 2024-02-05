@@ -18,23 +18,23 @@ class RuleSeeder extends Seeder
     {
         $data = [
             [
-                'name'  => 'from',
+                'name' => 'from',
                 'label' => 'From',
             ],
             [
-                'name'  => 'to',
+                'name' => 'to',
                 'label' => 'To',
             ],
             [
-                'name'  => 'cc',
+                'name' => 'cc',
                 'label' => 'Cc',
             ],
             [
-                'name'  => 'bcc',
+                'name' => 'bcc',
                 'label' => 'Bcc',
             ],
             [
-                'name'  => 'subject',
+                'name' => 'subject',
                 'label' => 'Subject', ],
         ];
 

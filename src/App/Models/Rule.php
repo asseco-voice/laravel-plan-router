@@ -27,7 +27,7 @@ class Rule extends Model implements \Asseco\PlanRouter\App\Contracts\Rule
     public static function getValidationRules(): array
     {
         return [
-            'name'  => 'required|string',
+            'name' => 'required|string',
             'label' => 'required|string',
         ];
     }

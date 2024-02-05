@@ -18,7 +18,7 @@ class Plan extends Model implements \Asseco\PlanRouter\App\Contracts\Plan
     protected $fillable = ['name', 'description', 'order', 'match_either', 'priority'];
 
     protected $casts = [
-        'match_either'    => 'boolean',
+        'match_either' => 'boolean',
     ];
 
     protected static function newFactory()
@@ -62,9 +62,9 @@ class Plan extends Model implements \Asseco\PlanRouter\App\Contracts\Plan
     public static function getValidationRules(): array
     {
         return [
-            'name'         => 'required|string',
-            'description'  => 'nullable|string',
-            'priority'     => 'integer',
+            'name' => 'required|string',
+            'description' => 'nullable|string',
+            'priority' => 'integer',
             'match_either' => 'boolean',
         ];
     }
