@@ -7,7 +7,7 @@ use Asseco\PlanRouter\App\Models\Plan;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static Plan|null match(CanMatch $canMatch)
+ * @method static Plan|null match(CanMatch $canMatch, ?bool $multipleMatches = false)
  *
  * @see \Asseco\PlanRouter\App\Services\InboxService
  */
