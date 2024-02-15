@@ -14,8 +14,8 @@ return [
      * Model bindings.
      */
     'models' => [
-        'rule'             => Rule::class,
-        'plan'             => Plan::class,
+        'rule' => Rule::class,
+        'plan' => Plan::class,
         'plan_model_value' => PlanModelValue::class,
     ],
 
@@ -30,7 +30,7 @@ return [
         /**
          * UUIDs as primary keys.
          */
-        'uuid'       => false,
+        'uuid' => false,
 
         /**
          * Timestamp types.
@@ -43,13 +43,13 @@ return [
          * Should the package run the migrations. Set to false if you're publishing
          * and changing default migrations.
          */
-        'run'        => true,
+        'run' => true,
     ],
 
     'plan_event_topic' => env('PLAN_EVENT_TOPIC', 'plan_changed'),
 
     'routes' => [
-        'prefix'     => 'api',
+        'prefix' => 'api',
         'middleware' => ['api'],
     ],
 ];

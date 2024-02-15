@@ -65,7 +65,7 @@ class PlanControllerTest extends TestCase
     public function can_update_an_existing_plan()
     {
         $data = [
-            'name'        => 'test',
+            'name' => 'test',
             'description' => 'test',
         ];
 

@@ -24,9 +24,9 @@ class PlanModelValueFactory extends Factory
     public function definition()
     {
         $data = [
-            'plan_id'    => Plan::factory(),
-            'attribute'  => $this->faker->word,
-            'value'      => $this->faker->word,
+            'plan_id' => Plan::factory(),
+            'attribute' => $this->faker->word,
+            'value' => $this->faker->word,
             'created_at' => now(),
             'updated_at' => now(),
         ];

@@ -24,9 +24,9 @@ class PlanRuleRequest extends FormRequest
     public function rules()
     {
         return [
-            'rules'           => 'array|required',
+            'rules' => 'array|required',
             'rules.*.rule_id' => 'required_with:rules|exists:rules,id',
-            'rules.*.regex'   => 'string|required_with:rules',
+            'rules.*.regex' => 'string|required_with:rules',
         ];
     }
 }

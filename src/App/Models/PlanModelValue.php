@@ -48,9 +48,9 @@ class PlanModelValue extends Model implements \Asseco\PlanRouter\App\Contracts\P
     public static function getValidationRules(): array
     {
         return [
-            'plan_id'   => 'required|exists:plans,id',
+            'plan_id' => 'required|exists:plans,id',
             'attribute' => 'required|string',
-            'value'     => 'required|string',
+            'value' => 'required|string',
         ];
     }
 }
