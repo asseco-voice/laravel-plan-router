@@ -19,9 +19,7 @@ class PlanControllerTest extends TestCase
         $this->plan = Plan::factory()->create();
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function can_get_all_plans()
     {
         $response = $this->getJson(route('plans.index'));
@@ -29,9 +27,7 @@ class PlanControllerTest extends TestCase
         $response->assertStatus(200)->assertJsonStructure([$this->modelAttributes()]);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function can_get_single_plan()
     {
         $response = $this->getJson(route('plans.show', $this->plan->id));
@@ -43,9 +39,7 @@ class PlanControllerTest extends TestCase
             ]);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function can_create_a_new_plan_if_it_doesnt_exist()
     {
         $plan = Plan::factory()->make();
@@ -59,9 +53,7 @@ class PlanControllerTest extends TestCase
         ]);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function can_update_an_existing_plan()
     {
         $data = [
@@ -74,9 +66,7 @@ class PlanControllerTest extends TestCase
             ->assertJson($data);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function can_delete_a_plan()
     {
         $response = $this->deleteJson(route('plans.destroy', $this->plan->id));
