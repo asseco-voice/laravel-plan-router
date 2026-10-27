@@ -10,9 +10,7 @@ class RuleControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function can_get_all_rules()
     {
         Rule::factory()->create();
